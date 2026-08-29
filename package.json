@@ -1,0 +1,89 @@
+{
+  "name": "sales-inventory-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Desktop sales and inventory management system",
+  "author": "Aliko Business Enterprise",
+  "main": "src/main/main.js",
+  "scripts": {
+    "prestart": "npm run check:runtime && npm run rebuild:electron",
+    "start": "electron-forge start",
+    "predev": "npm run check:runtime && npm run rebuild:electron",
+    "dev": "electron .",
+    "check:runtime": "node scripts/check-node-runtime.js",
+    "rebuild:node": "npm rebuild better-sqlite3",
+    "rebuild:electron": "npx electron-rebuild -f -w better-sqlite3 -v 43.2.0",
+    "verify:electron-native": "electron scripts/verify-electron-native.js",
+    "clean": "node scripts/clean.js",
+    "check:syntax": "node scripts/check-syntax.js",
+    "lint": "node scripts/lint.js",
+    "pretest": "",
+    "test": "npm run check:runtime && npm run rebuild:node && node scripts/run-tests.js",
+    "pretest:db": "",
+    "test:db": "npm run check:runtime && npm run rebuild:node && node scripts/run-tests.js",
+    "pretest:unit": "",
+    "test:unit": "npm run check:runtime && npm run rebuild:node && node scripts/run-tests.js",
+    "package:smoke": "npm run rebuild:electron && node scripts/packaging-smoke.js",
+    "verify": "npm test && npm run package:smoke",
+    "build:main": "node scripts/check-syntax.js",
+    "build:renderer": "node scripts/lint.js",
+    "build": "npm run clean && npm run build:main && npm run build:renderer",
+    "pack": "npm run verify && electron-builder --dir",
+    "dist": "npm run verify && npx electron-builder",
+    "release": "npm run verify && electron-builder --publish never",
+    "db:migrate": "node scripts/db-migrate.js",
+    "db:seed": "node scripts/db-seed.js",
+    "admin:create": "node scripts/create-admin.js",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "package-win": "electron-packager . sales-inventory-system --platform=win32 --arch=x64 --out=out --icon=resources/icon.ico --overwrite"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.10.1",
+    "electron-squirrel-startup": "^1.0.1",
+    "knex": "^3.1.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.11.2",
+    "@electron-forge/maker-deb": "^7.11.2",
+    "@electron-forge/maker-rpm": "^7.11.2",
+    "@electron-forge/maker-squirrel": "^7.11.2",
+    "@electron-forge/maker-zip": "^7.11.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.11.2",
+    "@electron-forge/plugin-fuses": "^7.11.2",
+    "@electron/fuses": "^1.8.0",
+    "@electron/rebuild": "^4.2.0",
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
+    "electron-rebuild": "^3.2.9",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.10.1": true,
+    "electron@43.2.0": true,
+    "lzma-native@8.0.6": true
+  },
+  "build": {
+    "appId": "com.aliko.salesinventorysystem",
+    "productName": "Sales & Inventory System",
+    "artifactName": "${productName}-${version}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "resources/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}.exe",
+      "requestExecutionLevel": "user"
+    }
+  }
+}

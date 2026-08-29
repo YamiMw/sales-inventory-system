@@ -1,0 +1,190 @@
+/*
+ * Custom Icon System
+ * Stage 5: all icon sizing is managed from this single file.
+ * Keep icon PNG/SVG files in: renderer/assets/images/icons/custom/
+ */
+
+:root {
+  --icon-xs: 13px;
+  --icon-sm: 16px;
+  --icon-md: 18px;
+  --icon-field: 21px;
+  --icon-default: 22px;
+  --icon-card: 24px;
+  --icon-card-box: 26px;
+  --icon-pos-back: 40px;
+  --icon-pos-timer: 32px;
+}
+
+/* Base icon rule used across all views */
+.app-icon,
+.custom-ui-icon,
+.inline-icon-img,
+.field-img-icon,
+.btn-img-icon {
+  display: inline-block;
+  object-fit: contain;
+  object-position: center;
+  vertical-align: middle;
+  flex: 0 0 auto;
+}
+
+.app-icon {
+  width: var(--icon-default);
+  height: var(--icon-default);
+}
+
+.custom-ui-icon,
+.inline-icon-img {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+/* Icons inside inputs/selects/filter fields */
+.field-icon.app-icon,
+.field-img-icon {
+  width: var(--icon-field);
+  height: var(--icon-field);
+  opacity: 0.9;
+}
+
+/* Small icons inside normal buttons */
+.btn-img-icon {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  margin-right: 6px;
+}
+
+/* Dashboard, inventory, documents and summary card icons */
+.stat-card-top .stat-icon,
+.stats-grid .stat-card > .stat-icon,
+.inventory-summary-grid .stat-card > .stat-icon,
+.documents-card-icon {
+  width: var(--icon-card-box) !important;
+  height: var(--icon-card-box) !important;
+  min-width: var(--icon-card-box) !important;
+  min-height: var(--icon-card-box) !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.stat-icon .app-icon,
+.documents-card-icon .app-icon,
+.stat-card-top .stat-icon img,
+.stats-grid .stat-card > .stat-icon img,
+.inventory-summary-grid .stat-card > .stat-icon img,
+.documents-card-icon img {
+  width: var(--icon-card) !important;
+  height: var(--icon-card) !important;
+  max-width: var(--icon-card) !important;
+  max-height: var(--icon-card) !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* Empty states */
+.empty-icon .app-icon,
+.customer-empty-icon .app-icon {
+  width: 34px;
+  height: 34px;
+}
+
+/* POS icons */
+.pos-back-btn .pos-back-icon {
+  width: var(--icon-pos-back);
+  height: var(--icon-pos-back);
+  object-fit: contain;
+}
+
+.timer-img-icon {
+  width: var(--icon-pos-timer);
+  height: var(--icon-pos-timer);
+}
+
+.hold-img-icon {
+  width: var(--icon-card);
+  height: var(--icon-card);
+  border-radius: 999px;
+}
+
+.session-btn .app-icon {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+
+/* Customer view icons */
+.contact-row .custom-ui-icon,
+.contact-row .inline-icon-img,
+.profile-info-value .custom-ui-icon,
+.profile-info-value .inline-icon-img,
+.customer-menu-item .custom-ui-icon,
+.customer-menu-item .inline-icon-img {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.customer-status-badge .custom-ui-icon,
+.customer-status-badge .inline-icon-img {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+}
+
+.customer-action-trigger .custom-ui-icon,
+.customer-action-trigger .inline-icon-img {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+
+/* Documents filter bar icons */
+.documents-search-wrap .app-icon,
+.documents-select-wrap .app-icon,
+.documents-date-btn .app-icon,
+.documents-icon-btn .app-icon {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  object-fit: contain;
+}
+
+/* Keep image icons from stretching in flex controls */
+button .app-icon,
+button .custom-ui-icon,
+label .app-icon,
+label .custom-ui-icon {
+  flex-shrink: 0;
+}
+
+
+/* Whole-system centralized icon rules */
+.app-icon,
+.custom-ui-icon,
+.inline-icon-img,
+.field-img-icon,
+.btn-img-icon,
+.sales-ui-icon,
+.sales-button-icon,
+.sales-field-icon,
+.pos-app-icon {
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.app-icon,
+.custom-ui-icon { width: 20px; height: 20px; }
+.inline-icon-img { width: 16px; height: 16px; }
+.field-img-icon,
+.sales-field-icon { width: 18px; height: 18px; }
+.btn-img-icon,
+.sales-button-icon { width: 18px; height: 18px; }
+.stat-icon .app-icon,
+.documents-card-icon .app-icon,
+.inventory-summary-grid .stat-icon .app-icon { width: 24px; height: 24px; }
+.pos-back-btn .pos-app-icon,
+.pos-back-btn .pos-back-icon { width: 24px; height: 24px; }
+.session-timer .pos-app-icon { width: 22px; height: 22px; }
+.session-btn .pos-app-icon { width: 18px; height: 18px; }
+.app-empty-state { display: grid; gap: 4px; place-items: center; color: #64748b; padding: 24px; }

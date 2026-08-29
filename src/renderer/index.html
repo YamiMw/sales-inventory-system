@@ -1,0 +1,3450 @@
+﻿<!DOCTYPE html>
+<!-- Renderer: Defines the authenticated desktop shell and all primary application views. -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'; worker-src 'none';">
+  <title>Sales & Inventory System - Dashboard</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/views/dashboard.css">
+  <link rel="stylesheet" href="styles/views/sidebar.css">
+  <link rel="stylesheet" href="styles/views/pos.css">
+  <link rel="stylesheet" href="styles/views/products.css">
+  <link rel="stylesheet" href="styles/views/inventory.css">
+  <link rel="stylesheet" href="styles/views/documents.css">
+  <link rel="stylesheet" href="styles/views/sales.css">
+  <link rel="stylesheet" href="styles/views/reports.css">
+  <link rel="stylesheet" href="styles/views/users.css">
+  <link rel="stylesheet" href="styles/views/settings.css">
+  <link rel="stylesheet" href="styles/ui-polish.css">
+  <link rel="stylesheet" href="styles/custom-icons.css">
+  <link rel="stylesheet" href="styles/views/customers.css">
+</head>
+
+<body>
+  <div id="app" class="app-container">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <a href="index.html">
+            <img src="assets/images/logo.png" alt="Logo" class="logo-image">
+          </a>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-view="dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-view="pos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span class="nav-label">POS System</span>
+        </a>
+        <a href="#" class="nav-item" data-view="products">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+          </svg>
+          <span class="nav-label">Products</span>
+        </a>
+        <a href="#" class="nav-item" data-view="inventory">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
+            <path d="M16 16h6v6h-6z" />
+            <path d="M19 13v6" />
+          </svg>
+          <span class="nav-label">Inventory</span>
+        </a>
+        <a href="#" class="nav-item" data-view="sales">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 18.4h4.5l2.2-2.1c.6-.6 1.5-.7 2.2-.2l1.2.8h3.2c.8 0 1.4.6 1.4 1.4s-.6 1.4-1.4 1.4h-4.8" />
+            <path
+              d="M3 20.6h6.1l2.1 1.1c.7.4 1.4.5 2.2.5h3.1c.9 0 1.7-.3 2.3-1l2.3-2.4c.5-.5.5-1.3 0-1.8s-1.3-.5-1.8 0l-1.6 1.6" />
+            <rect x="7.4" y="12.7" width="2.2" height="3.4" rx=".4" fill="currentColor" stroke="none" />
+            <rect x="11.2" y="10.8" width="2.2" height="5.3" rx=".4" fill="currentColor" stroke="none" />
+            <rect x="15" y="8.2" width="2.2" height="7.9" rx=".4" fill="currentColor" stroke="none" />
+            <path d="M7.2 10.2c4.5-1.1 7.9-3.9 10.6-8" />
+            <path d="M14.8 2.3h3.3v3.3" />
+          </svg>
+          <span class="nav-label">Sales</span>
+        </a>
+        <a href="#" class="nav-item" data-view="quotations-invoices">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Invoices & Quotations</span>
+        </a>
+        <a href="#" class="nav-item" data-view="customers">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <span class="nav-label">Customers</span>
+        </a>
+        <a href="#" class="nav-item" data-view="reports">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+          </svg>
+          <span class="nav-label">Reports</span>
+        </a>
+        <a href="#" class="nav-item admin-only" data-view="users">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+          </svg>
+          <span class="nav-label">User Management</span>
+        </a>
+        <a href="#" class="nav-item" data-view="settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+          <span class="nav-label">Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span id="current-user-name" class="user-name">Admin</span>
+        </div>
+        <button type="button" id="logout-btn" class="sidebar-logout">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- Fixed Header -->
+      <header class="main-header">
+        <div class="header-wrapper">
+          <div class="header-left">
+            <div class="header-title">
+              <h2 id="pageTitle">Dashboard Overview</h2>
+              <p id="pageSubtitle">Here's what's happening with your business today.</p>
+            </div>
+          </div>
+
+          <div class="header-right">
+            <div class="notification-dropdown" id="notificationDropdown">
+              <button type="button" class="header-btn" id="notificationBtn" aria-label="Open notifications"
+                aria-haspopup="true" aria-expanded="false">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+                <span class="notification-count" id="notificationCount" aria-hidden="true" hidden></span>
+              </button>
+              <section class="notification-panel" id="notificationPanel" aria-label="Notifications">
+                <div class="notification-panel-header">
+                  <div>
+                    <strong>Notifications</strong>
+                    <span id="notificationSummary">No unread alerts</span>
+                  </div>
+                  <button type="button" id="markNotificationsRead">Mark all read</button>
+                </div>
+                <div class="notification-list" id="notificationList"></div>
+                <div class="notification-panel-footer">
+                  <button type="button" id="clearNotifications">Clear notifications</button>
+                </div>
+              </section>
+            </div>
+
+            <div class="header-divider"></div>
+
+            <div class="header-profile-wrap">
+              <button type="button" class="user-profile" id="userProfile" aria-haspopup="true" aria-expanded="false">
+                <span class="user-avatar" id="userInitial">A</span>
+                <span class="user-info">
+                  <span id="userName">System Administrator</span>
+                  <span id="userRole">Admin</span>
+                </span>
+                <svg class="user-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <div class="user-dropdown" id="userDropdown">
+                <div class="user-dropdown-header">
+                  <div class="dropdown-user-info">
+                    <span class="dropdown-user-avatar" id="dropdownUserInitial">A</span>
+                    <div>
+                      <div class="user-dropdown-name" id="dropdownUserName">Administrator</div>
+                      <div class="user-dropdown-role" id="dropdownUserRole">Admin</div>
+                    </div>
+                  </div>
+                  <div class="dropdown-meta">
+                    <div class="dropdown-meta-row">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16v16H4z" />
+                        <path d="m22 6-10 7L2 6" />
+                      </svg>
+                      <span id="dropdownUserEmail">admin@nexus-systems.com</span>
+                    </div>
+                    <div class="dropdown-meta-row authority">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                      </svg>
+                      <span>Admin Authority</span>
+                    </div>
+                    <div class="dropdown-meta-row">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <path d="M3 10h18" />
+                        <path d="M5 4h14a2 2 0 0 1 2 2v16H3V6a2 2 0 0 1 2-2z" />
+                      </svg>
+                      <span id="dropdownSessionDate">Session: 6/2/2026</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="user-dropdown-section">
+                  <button type="button" class="user-dropdown-item" id="profileResetPassword">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="10" rx="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      <path d="M12 15v2" />
+                    </svg>
+                    <span>Reset Password</span>
+                  </button>
+                  <button type="button" class="user-dropdown-item logout" id="profileSignOut">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                      <path d="M16 17l5-5-5-5" />
+                      <path d="M21 12H9" />
+                    </svg>
+                    <span>Sign Out</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard View -->
+      <div id="dashboard-view" class="view active">
+        <section class="dashboard-content">
+
+          <!-- Stat Cards -->
+          <div class="stats-grid">
+
+            <div class="stat-card" data-view="sales" role="button" tabindex="0" title="Open Sales view">
+              <div class="stat-card-top">
+                <span class="stat-title">TODAY</span>
+                <div class="stat-icon blue">
+                  <img src="assets/images/icons/custom/wallet_icon.png" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-today-sales" data-currency-value="0">0.00</h2>
+              <small class="stat-detail" id="dash-today-transactions">0 transactions</small>
+            </div>
+
+            <div class="stat-card" data-view="sales" role="button" tabindex="0" title="Open Sales view">
+              <div class="stat-card-top">
+                <span class="stat-title">THIS MONTH</span>
+                <div class="stat-icon purple">
+                  <img src="assets/images/icons/custom/bar_chart_icon.png" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-month-sales" data-currency-value="0">0.00</h2>
+              <small class="stat-detail" id="dash-month-transactions">0 transactions</small>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-title">LOW STOCK</span>
+                <div class="stat-icon orange">
+                  <img src="assets/images/icons/custom/warning_triangle_icon.png" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-low-stock">0</h2>
+              <small class="stat-detail">Below reorder level</small>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-title">PRODUCTS</span>
+                <div class="stat-icon green">
+                  <img src="assets/images/icons/custom/product_cube_icon.png" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-products">0</h2>
+              <small class="stat-detail">Total in Catalog</small>
+            </div>
+
+            <div class="stat-card" data-view="inventory" role="button" tabindex="0" title="Open Inventory view">
+              <div class="stat-card-top">
+                <span class="stat-title">INVENTORY VALUE</span>
+                <div class="stat-icon indigo">
+                  <img src="assets/images/icons/custom/bar_chart_icon.png" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-inventory-value" data-currency-value="0">0.00</h2>
+              <small class="stat-detail">Stock valuation</small>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-title">CUSTOMERS</span>
+                <div class="stat-icon pink">
+                  <img src="assets/images/icons/custom/customers_icon.svg" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-customers">0</h2>
+              <small class="stat-detail">Profiles in system</small>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-title">PENDING ORDERS</span>
+                <div class="stat-icon orange">
+                  <img src="assets/images/icons/custom/order_list_icon.png" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-pending-orders">0</h2>
+              <small class="stat-detail">Items to fulfill</small>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <span class="stat-title">STAFF MEMBERS</span>
+                <div class="stat-icon red">
+                  <img src="assets/images/icons/custom/staff_shield_icon.svg" alt="" class="app-icon" aria-hidden="true">
+                </div>
+              </div>
+              <h2 id="dash-staff">0</h2>
+              <small class="stat-detail">Users in system</small>
+            </div>
+
+          </div>
+
+          <!-- Sales Charts -->
+          <div class="dashboard-charts-grid">
+            <div class="panel chart-panel sales-trend-panel">
+              <div class="panel-header">
+                <div>
+                  <h3 id="dash-sales-title">Weekly sales</h3>
+                  <p id="dash-sales-subtitle">Sales revenue by selected period</p>
+                </div>
+
+                <button type="button" class="date-filter">
+                  <span>Weekly</span>
+                  <svg class="chart-filter-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="chart-box">
+                <canvas id="dash-sales-chart"></canvas>
+                <div class="empty-chart" id="empty-chart">
+                  <div class="empty-icon">
+                    <img src="assets/images/icons/custom/activity_icon.svg" alt="" class="app-icon" aria-hidden="true">
+                  </div>
+                  <h4>No sales data available</h4>
+                  <p>Sales data will appear here once available.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel chart-panel category-chart-panel">
+              <div class="panel-header">
+                <div>
+                  <h3>Sales by category</h3>
+                  <p id="dash-category-subtitle">Category share for the selected period</p>
+                </div>
+              </div>
+
+              <div class="chart-box category-chart-box">
+                <canvas id="dash-category-chart"></canvas>
+                <div class="empty-chart" id="empty-category-chart">
+                  <div class="empty-icon">
+                    <img src="assets/images/icons/custom/pie_chart_icon.svg" alt="" class="app-icon" aria-hidden="true">
+                  </div>
+                  <h4>No category sales</h4>
+                  <p>Category shares will appear after products are sold.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Grid -->
+          <div class="bottom-grid">
+
+            <!-- Recently Sold -->
+            <div class="panel">
+              <div class="panel-header">
+                <h3>Recently Sold</h3>
+                <button type="button" class="text-btn" data-view="sales">View All</button>
+              </div>
+
+              <div class="list" id="recently-sold-list"></div>
+            </div>
+
+            <!-- Low Stock -->
+            <div class="panel">
+              <div class="panel-header">
+                <h3>Low Stock Alert</h3>
+                <button type="button" class="text-btn" data-view="inventory">View All</button>
+              </div>
+
+              <div class="list" id="low-stock-list"></div>
+            </div>
+
+          </div>
+
+          <!-- Recent Transactions -->
+          <div class="panel table-panel">
+            <div class="panel-header">
+              <h3>Recent Transactions</h3>
+              <button type="button" class="text-btn" data-view="sales">View All</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Sale #</th>
+                    <th>Customer</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody id="transactions-table"></tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- ProductsView -->
+      <div id="products-view" class="view">
+        <div class="view-header">
+          <div class="header-actions">
+            <button type="button" id="categories-btn" class="btn-secondary">
+              <svg class="action-icon category-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path
+                  d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.432 0l6.568-6.568a2.426 2.426 0 0 0 0-3.432z" />
+                <circle cx="7.5" cy="7.5" r="1.5" />
+              </svg>
+              <span>Categories</span>
+            </button>
+            <button type="button" id="export-products-btn" class="btn-secondary">
+              <svg class="action-icon export-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M14 3h7v7" />
+                <path d="M10 14 21 3" />
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+              </svg>
+              <span>Export</span>
+            </button>
+            <button type="button" id="add-product-btn" class="btn-primary">
+              <svg class="action-icon add-icon" width="23" height="23" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="M12 5v14" />
+              </svg>
+              <span>Add New Product</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="products-filters product-filter-bar">
+          <div class="search-wrapper">
+            <svg class="search-icon field-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.9" />
+              <path d="m15.9 15.9 4.4 4.4" />
+            </svg>
+            <input type="text" id="product-search" placeholder="Search by name, SKU..." class="search-input">
+          </div>
+
+          <div class="filter-select">
+            <svg class="filter-icon field-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 5h16l-6.2 7.4v5.2L10.2 20v-7.6L4 5Z" />
+            </svg>
+            <select id="category-filter">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+
+          <div class="filter-select">
+            <svg class="filter-icon field-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 16.6V7.4L12 3 4 7.4v9.2L12 21l8-4.4Z" />
+              <path d="M4.5 7.7 12 12l7.5-4.3" />
+              <path d="M12 21v-9" />
+            </svg>
+            <select id="stock-filter">
+              <option value="">All Stock</option>
+              <option value="in">In Stock</option>
+              <option value="low">Low Stock</option>
+              <option value="out">Out of Stock</option>
+            </select>
+          </div>
+
+          <div class="filter-select">
+            <svg class="filter-icon field-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 12v5.4A2.6 2.6 0 0 1 17.4 20H6.6A2.6 2.6 0 0 1 4 17.4V6.6A2.6 2.6 0 0 1 6.6 4H15" />
+              <path d="m8.6 12 3 3 7.8-8" />
+            </svg>
+            <select id="status-filter">
+              <option value=""></option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+
+          <div class="filter-select sort-select">
+            <svg class="filter-icon field-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M8 20V4" />
+              <path d="m4.6 7.4 3.4-3.4 3.4 3.4" />
+              <path d="M16 4v16" />
+              <path d="m12.6 16.6 3.4 3.4 3.4-3.4" />
+            </svg>
+            <select id="sort-filter">
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="price-asc">Price (Low-High)</option>
+              <option value="price-desc">Price (High-Low)</option>
+              <option value="stock-asc">Stock (Low-High)</option>
+              <option value="stock-desc">Stock (High-Low)</option>
+            </select>
+          </div>
+
+          <button type="button" id="clear-product-filters" class="product-reset-btn">Reset Filters</button>
+
+          <button type="button" id="refresh-products" class="btn-icon" title="Refresh products" aria-label="Refresh products">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19.5 11.7a7.5 7.5 0 1 1-2.2-5.3" />
+              <path d="M19.5 5.2v6.5H13" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Products Table -->
+        <div class="products-table-container">
+          <div class="table-header products-table-toolbar">
+            <span id="products-count">Showing 0-0 of 0 products</span>
+            <label class="per-page-selector" for="per-page-select">
+              <span>Per Page:</span>
+              <select id="per-page-select">
+                <option value="10">10</option>
+                <option value="25" selected>25</option>
+                <option value="50">50</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="products-table">
+              <thead>
+                <tr>
+                  <th class="product-id-col">Product ID</th>
+                  <th class="sku-col">SKU</th>
+                  <th class="name-col">
+                    <button type="button" class="sort-btn active" data-sort="name">
+                      Name
+                      <span class="sort-indicator" data-direction="asc">
+                        <svg class="sort-indicator-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M12 19V5"></path>
+                          <path d="m7 10 5-5 5 5"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th class="desc-col">Description</th>
+                  <th class="category-col">Category</th>
+                  <th class="price-col">
+                    <button type="button" class="sort-btn" data-sort="price">
+                      Price
+                      <span class="sort-indicator" data-direction="both">
+                        <svg class="sort-indicator-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M8 20V4"></path>
+                          <path d="m4.6 7.4 3.4-3.4 3.4 3.4"></path>
+                          <path d="M16 4v16"></path>
+                          <path d="m12.6 16.6 3.4 3.4 3.4-3.4"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th class="stock-col">
+                    <button type="button" class="sort-btn" data-sort="stock">
+                      Stock
+                      <span class="sort-indicator" data-direction="both">
+                        <svg class="sort-indicator-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M8 20V4"></path>
+                          <path d="m4.6 7.4 3.4-3.4 3.4 3.4"></path>
+                          <path d="M16 4v16"></path>
+                          <path d="m12.6 16.6 3.4 3.4 3.4-3.4"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </th>
+                  <th class="status-col">Status</th>
+                  <th class="actions-col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-tbody">
+                <!-- Products will be rendered here -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <div class="pagination" id="products-pagination">
+              <!-- Pagination will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- POS View -->
+      <div id="pos-view" class="view">
+        <div class="pos-container">
+          <!-- Header -->
+          <header class="pos-header">
+            <div class="pos-header-left">
+              <button type="button" class="pos-back-btn" id="pos-back-btn" title="Back to Dashboard"
+                aria-label="Back to Dashboard">
+                <svg class="pos-header-icon pos-back-icon" viewBox="0 0 29 24" aria-hidden="true" focusable="false">
+                  <path d="M24 12H6"></path>
+                  <path d="M12 6l-6 6 6 6"></path>
+                </svg>
+              </button>
+              <div class="pos-title-block">
+                <h1 class="pos-title">Point of Sale</h1>
+              </div>
+            </div>
+            <div class="pos-header-right">
+              <div class="session-timer">
+                <span class="timer-icon" aria-hidden="true">
+                  <svg class="pos-header-icon timer-svg-icon" viewBox="0 0 24 24" focusable="false">
+                    <path d="M10 2h4"></path>
+                    <path d="M12 5V2"></path>
+                    <path d="m17.6 6.2 1.4-1.4"></path>
+                    <circle cx="12" cy="14" r="7.5"></circle>
+                    <path d="M12 14V9.8"></path>
+                    <path d="M12 14l3.1 1.9"></path>
+                  </svg>
+                </span>
+                <span class="timer-display" id="session-timer">00:00:00</span>
+              </div>
+              <div class="session-controls">
+                <button type="button" class="session-btn live active" id="session-live" aria-pressed="true">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  <span>LIVE</span>
+                </button>
+                <button type="button" class="session-btn hold" id="session-hold" aria-pressed="false">
+                  <span class="session-btn-icon hold-icon" aria-hidden="true">
+                    <svg class="pos-header-icon hold-svg-icon" viewBox="0 0 24 24" focusable="false">
+                      <path d="M8 6v12"></path>
+                      <path d="M16 6v12"></path>
+                    </svg>
+                  </span>
+                  <span>HOLD</span>
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Main POS Grid -->
+          <div class="pos-main">
+            <!-- Left Side: Cart Section -->
+            <section class="pos-cart-section">
+              <div class="cart-container">
+                <!-- Customer Selection -->
+                <div class="customer-section">
+                  <div class="section-header">
+                    <span class="section-title">CUSTOMER</span>
+                    <button type="button" class="new-customer-btn" id="new-customer-btn" title="Add new customer"
+                      aria-label="Add new customer">
+                      <svg class="new-customer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      <span>NEW</span>
+                    </button>
+                  </div>
+
+                  <div id="customer-selection-area">
+                    <!-- Customer search or selected customer will be rendered here -->
+                    <div class="customer-search-wrapper">
+                      <svg class="search-icon field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 21a8 8 0 0 0-16 0"></path>
+                        <circle cx="12" cy="8" r="4"></circle>
+                      </svg>
+                      <input type="text" id="pos-customer-search" placeholder="Search customer [Name, Phone]..."
+                        class="customer-search-input">
+                      <span class="customer-mode-badge">Walk-in</span>
+                      <div class="customer-search-results" id="pos-customer-search-results" style="display: none;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cart Items -->
+                <div class="cart-items-section">
+                  <div class="cart-header">
+                    <span class="section-title">Cart Items</span>
+                    <span class="cart-count" id="cart-count">0 Items</span>
+                  </div>
+
+                  <div class="cart-items-container" id="cart-items-container">
+                    <div class="empty-cart" id="empty-cart-message">
+                      <span class="empty-cart-icon-wrap">
+                        <img src="assets/images/icons/empty-cart.png" alt="" class="empty-cart-icon" aria-hidden="true">
+                      </span>
+                      <p>Your cart is empty</p>
+                      <small>Scan a product or search to add items</small>
+                    </div>
+                    <div id="cart-items-list"></div>
+                  </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary-section">
+                  <div class="tax-option">
+                    <label class="discount-control" for="pos-discount-rate">
+                      <svg class="discount-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.59 13.41 12 22l-9-9V3h10l7.59 7.59a2 2 0 0 1 0 2.82Z"></path>
+                        <circle cx="7.5" cy="7.5" r="1.5"></circle>
+                      </svg>
+                      <span>Discount</span>
+                      <select id="pos-discount-rate" class="discount-select">
+                        <option value="0">No discount</option>
+                        <option value="0.02">2%</option>
+                        <option value="0.05">5%</option>
+                        <option value="0.10">10%</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <div class="price-breakdown">
+                    <div class="price-row">
+                      <span>Subtotal</span>
+                      <span id="cart-subtotal" data-currency-value="0">0.00</span>
+                    </div>
+                    <div class="price-row discount-row">
+                      <span>Discount</span>
+                      <span id="cart-discount" data-currency-value="0">0.00</span>
+                    </div>
+                    <div class="price-row">
+                      <span><span id="cart-tax-label">Tax</span> <span id="tax-status"></span></span>
+                      <span id="cart-tax" data-currency-value="0">0.00</span>
+                    </div>
+                    <div class="price-row total">
+                      <span>TOTAL</span>
+                      <span id="cart-total" data-currency-value="0">0.00</span>
+                    </div>
+                  </div>
+
+                  <!-- Payment Method Selection -->
+                  <div class="payment-methods">
+                    <button type="button" class="payment-method active" data-method="cash">
+                      <img src="assets/images/icons/custom/cash_sales_icon.png" alt="" class="payment-method-icon" aria-hidden="true">
+                      <span>Cash</span>
+                    </button>
+                    <button type="button" class="payment-method" data-method="card">
+                      <img src="assets/images/icons/custom/credit_card_icon.svg" alt="" class="payment-method-icon" aria-hidden="true">
+                      <span>Card</span>
+                    </button>
+                    <button type="button" class="payment-method" data-method="mobile">
+                      <img src="assets/images/icons/custom/phone_icon.svg" alt="" class="payment-method-icon" aria-hidden="true">
+                      <span>Mobile</span>
+                    </button>
+                  </div>
+
+                  <!-- Cart Actions -->
+                  <div class="cart-actions">
+                    <button type="button" class="clear-cart-btn" id="clear-cart-btn">
+                      <img src="assets/images/icons/custom/trash_icon.svg" alt="" class="cart-action-icon" aria-hidden="true">
+                      <span>CLEAR CART</span>
+                    </button>
+                    <button type="button" class="checkout-btn" id="checkout-btn" disabled>
+                      <img src="assets/images/icons/custom/lock_icon.svg" alt="" class="cart-action-icon" aria-hidden="true">
+                      <span class="checkout-label">Checkout</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Right Side: Products Section -->
+            <section class="pos-products-section">
+              <div class="products-container">
+                <!-- Search Toolbar -->
+                <div class="products-toolbar">
+                  <div class="product-search-wrapper">
+                    <svg class="search-icon field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="7"></circle>
+                      <path d="m16.5 16.5 4 4"></path>
+                    </svg>
+                    <input type="text" id="pos-product-search" placeholder="Search product, SKU, or scan barcode..."
+                      class="product-search-input">
+                  </div>
+
+                  <div class="barcode-search-wrapper">
+                    <svg class="search-icon field-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      aria-hidden="true">
+                      <path d="M7 3H5a2 2 0 0 0-2 2v2" />
+                      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                      <path d="M17 21h2a2 2 0 0 0 2-2v-2" />
+                      <path d="M7 12h10" />
+                    </svg>
+                    <input type="text" id="barcode-input" placeholder="Barcode..." class="barcode-input">
+                  </div>
+
+                  <div class="category-filter-wrapper">
+                    <svg class="filter-icon field-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      aria-hidden="true">
+                      <path d="M3 4h18l-7 8v6l-4 2v-8z" />
+                    </svg>
+                    <select id="pos-category-filter" class="category-select">
+                      <option value="">All Categories</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid-container">
+                  <div class="products-grid" id="pos-products-grid">
+                    <!-- Products will be rendered here -->
+                  </div>
+                  <div class="no-products-message" id="no-products-message" style="display: none;">
+                    <img src="assets/images/icons/search-document.png" alt="" class="no-products-search-icon"
+                      aria-hidden="true">
+                    <p>No products found</p>
+                  </div>
+                </div>
+
+                <!-- Quick Keys -->
+                <div class="quick-keys-section">
+                  <div class="quick-keys-header">
+                    <span>QUICK KEYS</span>
+                    <span class="shortcut-hint">Keyboard Shortcuts <span class="shortcut-live-dot" aria-hidden="true"></span></span>
+                  </div>
+                  <div class="quick-keys-grid" id="quick-keys-grid">
+                    <!-- Quick keys will be rendered here -->
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Inventory View -->
+      <div id="inventory-view" class="view">
+        <div class="view-header">
+          <div>
+            <h1>Inventory Management</h1>
+            <p class="view-subtitle">Track stock levels, manage adjustments, and monitor inventory health.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" id="stock-adjust-btn" class="btn-secondary">
+              <img src="assets/images/icons/custom/bar_chart_icon.png" alt="" class="app-icon btn-img-icon" aria-hidden="true"> Stock Adjust
+            </button>
+            <button type="button" id="export-inventory-btn" class="btn-secondary">
+              <img src="assets/images/icons/custom/export_icon.svg" alt="" class="app-icon btn-img-icon" aria-hidden="true"> Export
+            </button>
+            <button type="button" id="refresh-inventory" class="btn-icon" title="Refresh"><img src="assets/images/icons/custom/refresh_icon.png" alt="" class="app-icon btn-img-icon" aria-hidden="true"></button>
+          </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="stats-grid inventory-summary-grid">
+
+          <div class="stat-card">
+            <div class="stat-icon indigo">
+              <img src="assets/images/icons/custom/bar_chart_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>INVENTORY VALUE</h3>
+              <p class="stat-value" id="inv-total-value" data-currency-value="0">0.00</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <img src="assets/images/icons/custom/product_cube_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>TOTAL PRODUCTS</h3>
+              <p class="stat-value" id="inv-total-products">0</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <img src="assets/images/icons/custom/clipboard_tasks_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>TOTAL ITEMS</h3>
+              <p class="stat-value" id="inv-total-items">0</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <img src="assets/images/icons/custom/check_status_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>IN STOCK</h3>
+              <p class="stat-value" id="inv-in-stock">0</p>
+            </div>
+          </div>
+
+          <div class="stat-card warning">
+            <div class="stat-icon orange">
+              <img src="assets/images/icons/custom/warning_triangle_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>LOW STOCK</h3>
+              <p class="stat-value" id="inv-low-stock">0</p>
+            </div>
+          </div>
+
+          <div class="stat-card warning">
+            <div class="stat-icon orange">
+              <img src="assets/images/icons/custom/reorder_alert_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>BELOW REORDER</h3>
+              <p class="stat-value" id="inv-below-reorder">0</p>
+            </div>
+          </div>
+
+          <div class="stat-card" style="border-left: 4px solid #ef4444;">
+            <div class="stat-icon red">
+              <img src="assets/images/icons/custom/out_of_stock_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>OUT OF STOCK</h3>
+              <p class="stat-value" id="inv-out-of-stock">0</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon pink">
+              <img src="assets/images/icons/custom/category_tag_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </div>
+            <div class="stat-content">
+              <h3>CATEGORIES</h3>
+              <p class="stat-value" id="inv-categories">0</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="products-filters inventory-filter-bar">
+          <div class="search-wrapper">
+            <img src="assets/images/icons/custom/search_icon.png" alt="" class="search-icon app-icon field-img-icon" aria-hidden="true">
+            <input type="text" id="inventory-search" placeholder="Search name, SKU, description..."
+              class="search-input">
+          </div>
+
+          <div class="filter-select">
+            <img src="assets/images/icons/custom/box_outline_icon.png" alt="" class="filter-icon app-icon field-img-icon" aria-hidden="true">
+            <select id="inventory-stock-filter">
+              <option value="">All Stock</option>
+              <option value="in">In Stock</option>
+              <option value="low">Low Stock</option>
+              <option value="out">Out of Stock</option>
+              <option value="below">Below Reorder</option>
+            </select>
+          </div>
+
+          <div class="filter-select">
+            <img src="assets/images/icons/custom/category_tag_icon.png" alt="" class="filter-icon app-icon field-img-icon" aria-hidden="true">
+            <select id="inventory-category-filter">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+
+          <button type="button" id="reset-inventory-filters" class="inventory-reset-btn">Reset Filters</button>
+          <button type="button" id="refresh-inventory-btn" class="btn-icon" title="Refresh"><img src="assets/images/icons/custom/refresh_icon.png" alt="" class="app-icon btn-img-icon" aria-hidden="true"></button>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="products-table-container">
+          <div class="table-header">
+            <span id="inventory-count">Showing 0 items</span>
+            <div class="per-page-selector">
+              <span>Per Page:</span>
+              <select id="inventory-per-page">
+                <option value="10">10</option>
+                <option value="25" selected>25</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="products-table">
+              <thead>
+                <tr>
+                  <th class="sku-col">SKU</th>
+                  <th class="name-col">Product</th>
+                  <th class="description-col">Description</th>
+                  <th class="category-col">Category</th>
+                  <th class="stock-col">On Hand</th>
+                  <th class="stock-col">Reserved</th>
+                  <th class="stock-col">Available</th>
+                  <th class="stock-col">Reorder Level</th>
+                  <th class="status-col">Status</th>
+                  <th class="actions-col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-tbody">
+                <!-- Inventory items will be rendered here -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <div class="bulk-actions">
+              <span>Bulk Actions:</span>
+              <button type="button" id="bulk-stock-count" class="btn-sm">Stock Count</button>
+              <button type="button" id="bulk-stock-transfer" class="btn-sm">Transfer</button>
+            </div>
+
+            <div class="pagination" id="inventory-pagination">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stock Adjustment Modal -->
+      <div id="stock-modal" class="modal-overlay" style="display: none;">
+        <div class="modal stock-modal">
+          <form id="stock-adjustment-form">
+            <div class="modal-header">
+              <div>
+                <h2>Stock Update</h2>
+                <p class="modal-subtitle">Record stock received, returned, damaged, lost or corrected.</p>
+              </div>
+
+              <button
+                type="button"
+                class="modal-close"
+                id="close-stock-modal"
+                aria-label="Close stock modal"
+              >
+                &times;
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <input type="hidden" id="stock-product-id">
+
+              <div class="stock-product-info">
+                <p id="stock-product-name" class="product-name">
+                  Select a product
+                </p>
+
+                <p id="stock-product-sku" class="product-detail">
+                  SKU:
+                </p>
+
+                <p id="stock-current-qty" class="product-detail">
+                  Current Stock: 0
+                </p>
+              </div>
+
+              <div class="form-group">
+                <label for="stock-transaction-type">
+                  Transaction Type
+                </label>
+
+                <select id="stock-transaction-type" required>
+                  <option value="receipt">Stock Received</option>
+                  <option value="return">Customer Return</option>
+                  <option value="damage">Damaged Stock</option>
+                  <option value="lost">Lost Stock</option>
+                  <option value="count">Physical Stock Count</option>
+                  <option value="adjustment">Manual Correction</option>
+                </select>
+              </div>
+
+              <div
+                class="form-group"
+                id="stock-direction-group"
+                style="display: none;"
+              >
+                <label for="stock-direction">
+                  Correction Type
+                </label>
+
+                <select id="stock-direction">
+                  <option value="increase">Increase Stock</option>
+                  <option value="decrease">Reduce Stock</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="stock-quantity" id="stock-quantity-label">
+                  Quantity Received
+                </label>
+
+                <div class="quantity-control">
+                  <button type="button" id="stock-qty-dec">âˆ’</button>
+
+                  <input
+                    type="number"
+                    id="stock-quantity"
+                    value="1"
+                    min="1"
+                    step="1"
+                    required
+                  >
+
+                  <button type="button" id="stock-qty-inc">+</button>
+                </div>
+
+                <small id="stock-quantity-help">
+                  Enter the quantity received.
+                </small>
+              </div>
+
+              <div class="form-group">
+                <label for="stock-notes">
+                  Notes
+                </label>
+
+                <textarea
+                  id="stock-notes"
+                  rows="3"
+                  placeholder="Enter additional information"
+                ></textarea>
+              </div>
+
+              <div id="stock-preview" class="stock-preview">
+                <span>Current Stock:</span>
+                <strong id="preview-current-stock">0</strong>
+
+                <span>Stock Change:</span>
+                <strong id="preview-stock-change">+0</strong>
+
+                <span>New Stock Level:</span>
+                <strong id="stock-new-qty">0</strong>
+              </div>
+
+              <div id="stock-error" class="stock-error"></div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn-secondary"
+                id="cancel-stock-update"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                class="btn-primary"
+                id="save-stock-adjustment"
+              >
+                Save Stock Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+      <!-- Stock History Modal -->
+      <div id="stock-history-modal" class="modal-overlay" style="display: none;">
+        <div class="modal stock-history-modal">
+          <div class="modal-header">
+            <h2>Stock History</h2>
+            <button type="button" class="modal-close" id="stock-history-close"
+              data-close-modal="stock-history-modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="stock-history-product">
+              <p id="stock-history-product-name">Select a product</p>
+              <p id="stock-history-product-meta"></p>
+            </div>
+
+            <div class="stock-history-table-wrapper">
+              <table class="stock-history-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Change</th>
+                    <th>Before</th>
+                    <th>After</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody id="stock-history-tbody">
+                  <tr>
+                    <td colspan="6" class="stock-history-empty">No stock movements yet</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quotations & Invoices View -->
+      <div id="quotations-invoices-view" class="view">
+        <div class="documents-workspace">
+          <div class="documents-toolbar">
+            <div class="documents-tabs" role="tablist" aria-label="Document type">
+              <button type="button" class="documents-tab active" data-doc-tab="invoices">
+                Invoices & Orders
+              </button>
+              <button type="button" class="documents-tab" data-doc-tab="quotations">
+                Quotations
+              </button>
+            </div>
+            <div class="documents-actions">
+              <button type="button" id="new-document-btn" class="documents-primary-btn">
+                <img src="assets/images/icons/custom/add_icon.svg" alt="" class="app-icon" aria-hidden="true"> New Invoice
+              </button>
+            </div>
+          </div>
+
+          <div class="documents-card-grid documents-summary-grid">
+            <div class="documents-card">
+              <div class="documents-card-icon blue" id="documents-card-1-icon"><img src="assets/images/icons/custom/cash_sales_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-1-label">COLLECTED</p>
+                <p class="documents-card-value" id="documents-card-1-value" data-currency-value="0">0.00</p>
+              </div>
+            </div>
+            <div class="documents-card">
+              <div class="documents-card-icon amber" id="documents-card-2-icon"><img src="assets/images/icons/custom/calendar_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-2-label">OUTSTANDING</p>
+                <p class="documents-card-value" id="documents-card-2-value" data-currency-value="0">0.00</p>
+              </div>
+            </div>
+            <div class="documents-card">
+              <div class="documents-card-icon red" id="documents-card-3-icon"><img src="assets/images/icons/custom/order_list_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-3-label">DOCUMENTS</p>
+                <p class="documents-card-value" id="documents-card-3-value">0</p>
+              </div>
+            </div>
+            <div class="documents-card">
+              <div class="documents-card-icon blue" id="documents-card-4-icon"><img src="assets/images/icons/custom/check_status_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-4-label">PAID</p>
+                <p class="documents-card-value" id="documents-card-4-value">0</p>
+              </div>
+            </div>
+            <div class="documents-card">
+              <div class="documents-card-icon orange" id="documents-card-5-icon"><img src="assets/images/icons/custom/calendar_check_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-5-label">PARTIAL</p>
+                <p class="documents-card-value" id="documents-card-5-value">0</p>
+              </div>
+            </div>
+            <div class="documents-card">
+              <div class="documents-card-icon orange" id="documents-card-6-icon"><img src="assets/images/icons/custom/reorder_alert_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-6-label">OVERDUE</p>
+                <p class="documents-card-value" id="documents-card-6-value">0</p>
+              </div>
+            </div>
+            <div class="documents-card">
+              <div class="documents-card-icon red" id="documents-card-7-icon"><img src="assets/images/icons/custom/out_of_stock_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-7-label">VOIDED</p>
+                <p class="documents-card-value" id="documents-card-7-value">0</p>
+              </div>
+            </div>
+            <div class="documents-card">
+              <div class="documents-card-icon pink" id="documents-card-8-icon"><img src="assets/images/icons/custom/category_tag_icon.png" alt="" class="app-icon" aria-hidden="true"></div>
+              <div>
+                <p class="documents-card-label" id="documents-card-8-label">CUSTOMERS</p>
+                <p class="documents-card-value" id="documents-card-8-value">0</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="documents-filter-bar">
+            <div class="documents-search-wrap">
+              <img src="assets/images/icons/custom/search_icon.png" alt="" class="app-icon" aria-hidden="true">
+              <input type="text" id="documents-search" placeholder="Search number, customer, status...">
+            </div>
+            <div class="documents-select-wrap">
+              <img src="assets/images/icons/custom/filter_icon.png" alt="" class="app-icon" aria-hidden="true">
+              <select id="documents-status-filter">
+                <option value="">All Statuses</option>
+              </select>
+            </div>
+            <div class="documents-date-picker">
+              <button type="button" id="documents-date-range-toggle" class="documents-date-btn" aria-haspopup="dialog"
+                aria-expanded="false">
+                <img src="assets/images/icons/custom/calendar_icon.png" alt="" class="app-icon" aria-hidden="true">
+                <span id="documents-date-range-label">Date Range</span>
+                <i data-lucide="chevron-down" class="documents-date-chevron"></i>
+              </button>
+              <div id="documents-date-range-panel" class="documents-date-popover" hidden>
+                <label>
+                  <span>Start Date</span>
+                  <input type="date" id="documents-start-date">
+                </label>
+                <label>
+                  <span>End Date</span>
+                  <input type="date" id="documents-end-date">
+                </label>
+                <div class="documents-date-actions">
+                  <button type="button" id="documents-date-clear">Clear</button>
+                  <button type="button" id="documents-date-apply">Apply</button>
+                </div>
+              </div>
+            </div>
+            <button type="button" id="documents-reset-filters" class="documents-reset-btn">Reset Filters</button>
+            <button type="button" id="documents-refresh-btn" class="documents-icon-btn" title="Refresh">
+              <img src="assets/images/icons/custom/refresh_icon.png" alt="" class="app-icon" aria-hidden="true">
+            </button>
+          </div>
+
+          <div class="documents-table-card">
+            <div class="documents-table-header">
+              <span id="documents-count">Showing 0 documents</span>
+              <div class="per-page-selector">
+                <span>Per Page:</span>
+                <select id="documents-per-page">
+                  <option value="10">10</option>
+                  <option value="25" selected>25</option>
+                  <option value="50">50</option>
+                </select>
+              </div>
+            </div>
+            <div class="documents-table-wrapper">
+              <table class="documents-table">
+                <thead>
+                  <tr id="documents-thead-row"></tr>
+                </thead>
+                <tbody id="documents-tbody">
+                  <tr>
+                    <td colspan="8" class="documents-empty">No documents found</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="documents-table-footer">
+              <span id="documents-active-filter-summary">All records</span>
+              <div class="pagination" id="documents-pagination"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="document-create-modal" class="modal-overlay documents-create-overlay" style="display: none;">
+          <div class="modal documents-modal">
+            <div class="modal-header documents-create-header">
+              <div class="documents-modal-titlebar">
+                <div>
+                  <h2 id="document-modal-title">TAX Invoice</h2>
+                  <p class="documents-modal-subtitle" id="document-modal-subtitle">Sales registrar generation log</p>
+                </div>
+              </div>
+              <button type="button" class="modal-close" id="document-modal-close" aria-label="Close invoice form">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+            <div class="modal-body documents-create-body">
+              <span id="document-date-label" class="documents-hidden-control">Document Deadline</span>
+              <select id="document-customer" class="documents-hidden-control" tabindex="-1"></select>
+              <input type="number" id="document-tax" class="documents-hidden-control" min="0" step="0.01" value="0"
+                tabindex="-1">
+              <input type="number" id="document-amount-paid" class="documents-hidden-control" min="0" step="0.01"
+                value="0" tabindex="-1">
+
+              <div class="documents-invoice-form-layout">
+                <div class="documents-form-main">
+                  <section class="documents-form-section documents-client-section documents-form-step-panel"
+                    data-document-panel="customer">
+                    <div class="documents-customer-section-head">
+                      <div class="documents-section-title">
+                        <i data-lucide="user-round-check"></i>
+                        <span id="document-client-section-title">Customer Details</span>
+                      </div>
+                      <button type="button" class="new-customer-btn documents-new-customer-btn"
+                        id="document-add-customer-btn" title="Add customer" aria-label="Add customer">
+                        <i data-lucide="user-plus" class="new-customer-icon"></i>
+                        <span>Add Customer</span>
+                      </button>
+                    </div>
+                    <div class="documents-search-card documents-customer-search-card">
+                      <img src="assets/images/icons/custom/search_icon.png" alt="" class="app-icon" aria-hidden="true">
+                      <input type="search" id="document-customer-search" autocomplete="off"
+                        placeholder="Search existing customer...">
+                      <div class="documents-search-results" id="document-customer-results"></div>
+                    </div>
+                    <div class="documents-selected-client" id="document-customer-preview" hidden></div>
+                  </section>
+
+                  <section class="documents-form-section documents-items-section documents-form-step-panel"
+                    data-document-panel="products" hidden>
+                    <div class="documents-lines-header">
+                      <div class="documents-section-title">
+                        <img src="assets/images/icons/custom/product_cube_icon.png" alt="" class="app-icon" aria-hidden="true">
+                        <span id="document-items-section-title">Products</span>
+                      </div>
+                      <div class="documents-search-card documents-product-search">
+                        <input type="search" id="document-product-search" autocomplete="off"
+                          placeholder="Search product inventory list to add...">
+                        <img src="assets/images/icons/custom/search_icon.png" alt="" class="app-icon" aria-hidden="true">
+                        <div class="documents-search-results" id="document-product-results"></div>
+                      </div>
+                    </div>
+                    <div class="documents-line-table-wrap">
+                      <table class="documents-line-table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Unit Price</th>
+                            <th>Qty</th>
+                            <th>Discount %</th>
+                            <th>Amount</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody id="document-lines"></tbody>
+                      </table>
+                    </div>
+                    <button type="button" id="document-add-line" class="documents-add-line-btn">
+                      <img src="assets/images/icons/custom/add_icon.svg" alt="" class="app-icon" aria-hidden="true"> Add Product Line
+                    </button>
+                  </section>
+
+                  <section class="documents-form-section documents-notes-section documents-form-step-panel"
+                    data-document-panel="products" hidden>
+                    <div class="documents-section-title">
+                      <img src="assets/images/icons/custom/order_list_icon.png" alt="" class="app-icon" aria-hidden="true">
+                      <span>Notes</span>
+                    </div>
+                    <div class="form-group documents-remarks-field">
+                      <label id="document-notes-label">Special Terms or Delivery Instruction Remarks</label>
+                      <textarea id="document-notes" rows="4"
+                        placeholder="Shipping schedules or internal invoice references shown on printable document sheets..."></textarea>
+                    </div>
+                  </section>
+                </div>
+
+                <aside class="documents-form-side">
+                  <section class="documents-form-section documents-details-section documents-form-step-panel"
+                    data-document-panel="payment" hidden>
+                    <div class="documents-section-title">
+                      <i data-lucide="settings-2"></i>
+                      <span id="document-details-section-title">Invoice Details</span>
+                    </div>
+                    <div class="documents-payment-strip" id="document-payment-fields">
+                      <div class="form-group">
+                        <label>Payment Terms</label>
+                        <select id="document-payment-terms">
+                          <option value="0">Immediate</option>
+                          <option value="7">Net 7 days</option>
+                          <option value="14">Net 14 days</option>
+                          <option value="30">Net 30 days</option>
+                        </select>
+                      </div>
+                      <div class="form-group documents-hidden-control">
+                        <label>Document Deadline</label>
+                        <input type="date" id="document-due-date">
+                      </div>
+                      <div class="form-group">
+                        <label>Payment Channel</label>
+                        <select id="document-payment-method">
+                          <option value="cash">Cash</option>
+                          <option value="card">Card</option>
+                          <option value="mobile">Mobile</option>
+                          <option value="bank">Bank</option>
+                          <option value="credit">Credit</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>Settle Status</label>
+                        <select id="document-settle-status">
+                          <option value="paid">Fully Paid</option>
+                          <option value="unpaid">Unpaid</option>
+                          <option value="partial">Partial</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>VAT Setting</label>
+                        <select id="document-tax-rate">
+                          <option value="17.5">VAT (17.5%)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </section>
+
+                  <aside class="documents-payable-panel documents-form-step-panel" data-document-panel="payment" hidden>
+                    <div class="documents-section-title documents-total-title">
+                      <img src="assets/images/icons/custom/calculator_icon.png" alt="" class="app-icon" aria-hidden="true">
+                      <span>Totals</span>
+                    </div>
+                    <div class="documents-payable-row">
+                      <span>Subtotal</span>
+                      <strong id="document-subtotal" data-currency-value="0">0.00</strong>
+                    </div>
+                    <div class="documents-discount-control">
+                      <label>Discount</label>
+                      <input type="number" id="document-discount" min="0" step="0.01" value="0">
+                    </div>
+                    <div class="documents-payable-row discount">
+                      <span>Discount Applied</span>
+                      <strong id="document-summary-discount" data-currency-value="0">0.00</strong>
+                    </div>
+                    <div class="documents-payable-row">
+                      <span>VAT / Tax</span>
+                      <strong id="document-summary-tax" data-currency-value="0">0.00</strong>
+                    </div>
+                    <div class="documents-payable-total">
+                      <div>
+                        <span id="document-total-section-title">Total</span>
+                        <strong id="document-total" data-currency-value="0">0.00</strong>
+                      </div>
+                      <span class="documents-payable-icon"><img src="assets/images/icons/custom/cash_sales_icon.png" alt="" class="app-icon" aria-hidden="true"></span>
+                    </div>
+                  </aside>
+
+                  <div class="documents-quotation-actions documents-form-step-panel documents-hidden-control" id="document-quotation-actions"
+                    data-document-panel="payment" hidden>
+                    <div class="form-group">
+                      <label>Document Deadline</label>
+                      <input type="date" id="document-quotation-expiry">
+                    </div>
+                  </div>
+                </aside>
+
+                <section class="documents-form-section documents-form-step-panel documents-preview-step"
+                  id="document-form-preview" data-document-panel="preview" hidden>
+                  <div class="documents-section-title">
+                    <img src="assets/images/icons/custom/eye_icon.svg" alt="" class="app-icon" aria-hidden="true">
+                    <span>Preview</span>
+                  </div>
+                  <div id="document-preview-output"></div>
+                </section>
+              </div>
+            </div>
+            <div id="document-create-approval-panel" class="documents-inline-approval documents-create-approval" hidden>
+              <div class="documents-inline-approval-head">
+                <div>
+                  <h3>Manager Approval</h3>
+                  <p>Enter manager credentials to approve and finalize this document.</p>
+                </div>
+                <button type="button" class="documents-inline-approval-close" id="document-create-approval-panel-close"
+                  aria-label="Close approval panel">
+                  <i data-lucide="x"></i>
+                </button>
+              </div>
+              <div id="document-create-approval-error" class="documents-inline-approval-error" hidden></div>
+              <div class="documents-inline-approval-grid">
+                <label>
+                  <span>Username</span>
+                  <input type="text" id="document-create-approval-username" autocomplete="username">
+                </label>
+                <label>
+                  <span>Password</span>
+                  <input type="password" id="document-create-approval-password" autocomplete="current-password">
+                </label>
+                <label class="documents-inline-approval-note">
+                  <span>Approval Note</span>
+                  <textarea id="document-create-approval-note" rows="2"></textarea>
+                </label>
+              </div>
+              <div class="documents-inline-approval-actions">
+                <button type="button" class="documents-footer-btn secondary" id="document-create-approval-cancel">
+                  Cancel
+                </button>
+                <button type="button" class="documents-footer-btn primary" id="document-create-approval-confirm">
+                  <img src="assets/images/icons/custom/check_status_icon.png" alt="" class="app-icon" aria-hidden="true"> Approve &amp; Finalize
+                </button>
+              </div>
+            </div>
+            <div class="modal-footer documents-create-footer">
+              <button type="button" class="documents-footer-btn ghost" id="document-cancel-btn">Cancel</button>
+              <button type="button" class="documents-footer-btn secondary" id="document-back-btn" style="display: none;">
+                <i data-lucide="arrow-left"></i> Back
+              </button>
+              <button type="button" class="documents-footer-btn primary" id="document-next-btn">
+                Continue <i data-lucide="arrow-right"></i>
+              </button>
+              <button type="button" class="documents-footer-btn secondary" id="document-preview-print-btn"
+                style="display: none;">
+                <img src="assets/images/icons/custom/printer_icon.svg" alt="" class="app-icon" aria-hidden="true"> Print
+              </button>
+              <button type="button" class="documents-footer-btn secondary" id="document-preview-pdf-btn"
+                style="display: none;">
+                <img src="assets/images/icons/custom/download_icon.svg" alt="" class="app-icon" aria-hidden="true"> PDF
+              </button>
+              <button type="button" class="documents-footer-btn secondary" id="document-save-draft-btn"
+                style="display: none;">
+                <img src="assets/images/icons/custom/save_icon.svg" alt="" class="app-icon" aria-hidden="true"> Store Unpaid Ledger
+              </button>
+              <button type="button" class="documents-footer-btn primary" id="document-save-send-btn"
+                style="display: none;">
+                <img src="assets/images/icons/custom/check_status_icon.png" alt="" class="app-icon" aria-hidden="true"> Finalize & Settle Paid
+              </button>
+              <button type="button" class="documents-footer-btn primary" id="document-manager-approval-btn"
+                style="display: none;">
+                <img src="assets/images/icons/custom/check_status_icon.png" alt="" class="app-icon" aria-hidden="true"> Manager Approval
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="document-detail-modal" class="modal-overlay" style="display: none;">
+          <div class="modal documents-detail-modal">
+            <div class="modal-header documents-detail-header">
+              <div>
+                <h2 id="document-detail-title">Document Preview</h2>
+                <p id="document-detail-subtitle">Preview document</p>
+              </div>
+              <button type="button" class="modal-close" id="document-detail-close" aria-label="Close preview">
+                <i data-lucide="x" aria-hidden="true"></i>
+                <span class="documents-close-fallback" aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="document-detail-body"></div>
+            <div id="document-detail-approval-panel" class="documents-inline-approval" hidden>
+              <div class="documents-inline-approval-head">
+                <div>
+                  <h3>Manager Approval</h3>
+                  <p>Enter manager credentials to approve and finalize this document.</p>
+                </div>
+                <button type="button" class="documents-inline-approval-close" id="document-approval-panel-close"
+                  aria-label="Close approval panel">
+                  <i data-lucide="x"></i>
+                </button>
+              </div>
+              <div id="document-approval-error" class="documents-inline-approval-error" hidden></div>
+              <div class="documents-inline-approval-grid">
+                <label>
+                  <span>Username</span>
+                  <input type="text" id="document-approval-username" autocomplete="username">
+                </label>
+                <label>
+                  <span>Password</span>
+                  <input type="password" id="document-approval-password" autocomplete="current-password">
+                </label>
+                <label class="documents-inline-approval-note">
+                  <span>Approval Note</span>
+                  <textarea id="document-approval-note" rows="2"></textarea>
+                </label>
+              </div>
+              <div class="documents-inline-approval-actions">
+                <button type="button" class="documents-footer-btn secondary" id="document-approval-cancel">
+                  Cancel
+                </button>
+                <button type="button" class="documents-footer-btn primary" id="document-approval-confirm">
+                  <img src="assets/images/icons/custom/check_status_icon.png" alt="" class="app-icon" aria-hidden="true"> Approve &amp; Finalize
+                </button>
+              </div>
+            </div>
+            <div id="document-detail-payment-panel" class="documents-inline-approval documents-inline-payment" hidden>
+              <div class="documents-inline-approval-head">
+                <div>
+                  <h3>Record Payment</h3>
+                  <p id="document-payment-panel-summary">Enter payment details for this invoice.</p>
+                </div>
+                <button type="button" class="documents-inline-approval-close" id="document-payment-panel-close"
+                  aria-label="Close payment panel">
+                  <i data-lucide="x"></i>
+                </button>
+              </div>
+              <div id="document-payment-error" class="documents-inline-approval-error" hidden></div>
+              <div class="documents-inline-approval-grid">
+                <label>
+                  <span>Amount</span>
+                  <input type="number" id="document-payment-amount" min="0.01" step="0.01">
+                </label>
+                <label>
+                  <span>Method</span>
+                  <select id="document-payment-method-entry">
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                    <option value="mobile">Mobile</option>
+                    <option value="bank">Bank</option>
+                    <option value="credit">Credit</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Reference</span>
+                  <input type="text" id="document-payment-reference">
+                </label>
+                <label class="documents-inline-approval-note">
+                  <span>Notes</span>
+                  <textarea id="document-payment-notes" rows="2"></textarea>
+                </label>
+              </div>
+              <div class="documents-inline-approval-actions">
+                <button type="button" class="documents-footer-btn secondary" id="document-payment-cancel">
+                  Cancel
+                </button>
+                <button type="button" class="documents-footer-btn primary" id="document-payment-confirm">
+                  <img src="assets/images/icons/custom/card_icon.png" alt="" class="app-icon" aria-hidden="true"> Record Payment
+                </button>
+              </div>
+            </div>
+            <div class="modal-footer documents-detail-footer">
+              <button type="button" class="documents-footer-btn ghost" id="document-detail-cancel">Close</button>
+              <button type="button" class="documents-footer-btn secondary" id="document-detail-edit-draft" hidden>
+                <i data-lucide="pencil"></i> Edit Draft
+              </button>
+              <button type="button" class="documents-footer-btn primary" id="document-detail-approve" hidden>
+                <img src="assets/images/icons/custom/check_status_icon.png" alt="" class="app-icon" aria-hidden="true"> Manager Approval
+              </button>
+              <button type="button" class="documents-footer-btn secondary" id="document-detail-payment" hidden>
+                <img src="assets/images/icons/custom/card_icon.png" alt="" class="app-icon" aria-hidden="true"> Record Payment
+              </button>
+              <button type="button" class="documents-footer-btn danger" id="document-detail-void" hidden>
+                <i data-lucide="ban"></i> Void
+              </button>
+              <button type="button" class="documents-footer-btn secondary" id="document-detail-print">
+                <img src="assets/images/icons/custom/printer_icon.svg" alt="" class="app-icon" aria-hidden="true"> Print
+              </button>
+              <button type="button" class="documents-footer-btn secondary" id="document-detail-pdf">
+                <img src="assets/images/icons/custom/download_icon.svg" alt="" class="app-icon" aria-hidden="true"> Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sales View -->
+
+      <div id="sales-view" class="view">
+        <div class="view-header sales-view-toolbar">
+          <div class="sales-tabs">
+            <button type="button" class="sales-tab active" data-tab="invoices">Invoices</button>
+            <button type="button" class="sales-tab" data-tab="quotations">Quotations</button>
+          </div>
+          <div class="header-actions sales-toolbar-actions">
+            <button type="button" id="clear-sales-btn" class="btn-secondary sales-clear-history-btn">
+              <svg class="sales-ui-icon sales-button-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 7h14"></path>
+                <path d="M10 11v6"></path>
+                <path d="M14 11v6"></path>
+                <path d="M8 7l1-3h6l1 3"></path>
+                <path d="M7 7l1 13h8l1-13"></path>
+              </svg>
+              Clear Sales History
+            </button>
+            <button type="button" id="export-sales-btn" class="btn-secondary">
+              <svg class="sales-ui-icon sales-button-icon sales-export-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 3h7v7"></path>
+                <path d="M10 14 21 3"></path>
+                <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+              </svg>
+              <img src="assets/images/icons/custom/export_icon.svg" alt="" class="app-icon btn-img-icon" aria-hidden="true"> Export
+            </button>
+            <button type="button" id="new-invoice-btn" class="btn-primary">
+              <svg class="sales-ui-icon sales-button-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5v14"></path>
+                <path d="M5 12h14"></path>
+              </svg>
+              New Invoice
+            </button>
+          </div>
+        </div>
+
+        <!-- ============ SALES TAB ============ -->
+        <div id="invoices-tab" class="sales-tab-content active">
+          <!-- Summary Cards -->
+          <div class="stats-grid">
+            <div class="stat-card" style="border-left: 4px solid #3b82f6;">
+              <div class="stat-icon">ðŸ’°</div>
+              <div class="stat-content">
+                <h3>TOTAL SALES</h3>
+                <p class="stat-value" id="sales-outstanding" data-currency-value="0">0.00</p>
+              </div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid #ef4444;">
+              <div class="stat-icon">âš ï¸</div>
+              <div class="stat-content">
+                <h3>PAID INVOICES</h3>
+                <p class="stat-value" id="sales-overdue" data-currency-value="0">0.00</p>
+              </div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid #f59e0b;">
+              <div class="stat-icon">â°</div>
+              <div class="stat-content">
+                <h3>OUTSTANDING</h3>
+                <p class="stat-value" id="sales-due-week" data-currency-value="0">0.00</p>
+              </div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid #10b981;">
+              <div class="stat-icon">âœ…</div>
+              <div class="stat-content">
+                <h3>THIS MONTH</h3>
+                <p class="stat-value" id="sales-paid-month" data-currency-value="0">0.00</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="products-filters">
+            <div class="search-wrapper">
+              <img src="assets/images/icons/custom/search_icon.png" alt="" class="app-icon" aria-hidden="true">
+              <input type="text" id="invoice-search" placeholder="Search invoices, customers..." class="search-input">
+            </div>
+
+            <div class="filter-select">
+              <img src="assets/images/icons/custom/filter_icon.png" alt="" class="app-icon" aria-hidden="true">
+              <select id="invoice-status-filter">
+                <option value="">All Statuses</option>
+                <option value="draft">Draft</option>
+                <option value="issued">Issued</option>
+                <option value="completed" selected>Paid</option>
+                <option value="partial">Partial</option>
+                <option value="overdue">Overdue</option>
+                <option value="voided">Voided</option>
+              </select>
+            </div>
+
+            <button type="button" id="sales-date-range-btn" class="sales-date-range-btn">
+              <img src="assets/images/icons/custom/calendar_icon.png" alt="" class="app-icon" aria-hidden="true"> Date Range
+            </button>
+            <button type="button" id="refresh-sales" class="btn-icon" title="Refresh"><img src="assets/images/icons/custom/refresh_icon.png" alt="" class="app-icon btn-img-icon" aria-hidden="true"></button>
+          </div>
+
+          <!-- Quick Status Filters -->
+          <div class="quick-filters" id="invoice-quick-filters">
+            <button type="button" class="quick-filter" data-status="">All</button>
+            <button type="button" class="quick-filter" data-status="draft">Draft</button>
+            <button type="button" class="quick-filter" data-status="issued">Issued</button>
+            <button type="button" class="quick-filter active" data-status="completed">Paid</button>
+            <button type="button" class="quick-filter" data-status="partial">Partial</button>
+            <button type="button" class="quick-filter" data-status="overdue">Overdue</button>
+            <button type="button" class="quick-filter" data-status="voided">Voided</button>
+          </div>
+
+          <!-- Sales Table -->
+          <div class="products-table-container">
+            <div class="table-header">
+              <span id="invoices-count">Showing 0 sales</span>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="products-table">
+                <thead>
+                  <tr>
+                    <th>Invoice #</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Payment</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="invoices-tbody">
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              <div class="bulk-actions">
+                <span>Bulk Actions:</span>
+                <button type="button" id="bulk-void-invoices" class="btn-sm">Void Selected</button>
+                <button type="button" id="bulk-export-invoices" class="btn-sm">Export</button>
+              </div>
+              <div class="pagination" id="invoices-pagination"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ QUOTATIONS TAB ============ -->
+        <div id="quotations-tab" class="sales-tab-content">
+          <div class="products-filters">
+            <div class="search-wrapper">
+              <img src="assets/images/icons/custom/search_icon.png" alt="" class="search-icon app-icon field-img-icon" aria-hidden="true">
+              <input type="text" id="quote-search" placeholder="Search quotations..." class="search-input">
+            </div>
+
+            <div class="filter-select">
+              <span class="filter-icon">ðŸ“Š</span>
+              <select id="quote-status-filter">
+                <option value="">All Statuses</option>
+                <option value="draft">Draft</option>
+                <option value="sent">Sent</option>
+                <option value="accepted">Accepted</option>
+                <option value="declined">Declined</option>
+                <option value="expired">Expired</option>
+                <option value="converted">Converted</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quick Status Filters -->
+          <div class="quick-filters" id="quote-quick-filters">
+            <button type="button" class="quick-filter active" data-status="">All</button>
+            <button type="button" class="quick-filter" data-status="draft">Draft</button>
+            <button type="button" class="quick-filter" data-status="sent">Sent</button>
+            <button type="button" class="quick-filter" data-status="accepted">Accepted</button>
+            <button type="button" class="quick-filter" data-status="declined">Declined</button>
+            <button type="button" class="quick-filter" data-status="expired">Expired</button>
+            <button type="button" class="quick-filter" data-status="converted">Converted</button>
+          </div>
+
+          <!-- Quotations Table -->
+          <div class="products-table-container">
+            <div class="table-header">
+              <span id="quotes-count">Showing 0 quotations</span>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="products-table">
+                <thead>
+                  <tr>
+                    <th>Quote #</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="quotations-tbody">
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-footer">
+              <div class="pagination" id="quotations-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invoice/Quotation Modal -->
+      <div id="invoice-modal" class="modal-overlay" style="display: none;">
+        <div class="modal" style="max-width: 900px; max-height: 90vh;">
+          <div class="modal-header">
+            <h2 id="invoice-modal-title">Invoice Details</h2>
+            <button type="button" class="modal-close" data-close-modal="invoice-modal">âœ•</button>
+          </div>
+          <div class="modal-body" id="invoice-modal-body" style="max-height: 60vh; overflow-y: auto;">
+            <!-- Dynamic content -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" data-close-modal="invoice-modal">Close</button>
+            <button type="button" class="btn-primary" id="invoice-modal-action">Print</button>
+          </div>
+        </div>
+      </div>
+      <!-- Customers View -->
+      <div id="customers-view" class="view">
+        <input type="file" id="customer-import-file-input" accept=".csv,text/csv" hidden>
+        <div class="view-header customer-view-legacy-header" hidden aria-hidden="true">
+          <div>
+            <h1>Customer Management</h1>
+            <p class="view-subtitle">Directory & CRM - Manage customer profiles, balances, and history.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" id="clear-customers-btn" class="btn-secondary"
+              style="color: #ef4444; border-color: #fecaca;">
+              <span>ðŸ—‘ï¸</span> Clear History
+            </button>
+            <button type="button" id="import-customers-btn" class="btn-secondary">
+              <span>ðŸ“¥</span> Import
+            </button>
+            <button type="button" id="add-customer-btn" class="btn-primary">
+              <span>ðŸ‘¤+</span> Add Customer
+            </button>
+          </div>
+        </div>
+
+        <div class="customer-top-actions">
+          <button type="button" id="import-customers-top-btn" class="customer-import-btn">
+            <img src="assets/images/icons/custom/upload_icon.svg" alt="" class="custom-ui-icon customer-action-icon customer-import-icon" aria-hidden="true">
+            <span>Import</span>
+          </button>
+          <button type="button" id="add-customer-top-btn" class="customer-add-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M19 8v6" />
+              <path d="M22 11h-6" />
+            </svg>
+            <span>Add Customer</span>
+          </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="products-filters customer-controls">
+          <div class="search-wrapper customer-search-field">
+            <img src="assets/images/icons/custom/search_icon.png" alt="" class="search-icon app-icon field-img-icon" aria-hidden="true">
+            <input type="search" id="customer-search" placeholder="Search by name, email, phone, or ID..."
+              class="search-input">
+          </div>
+
+          <div class="filter-select customer-filter-pill customer-type-filter">
+            <span class="filter-icon">
+              <img src="assets/images/icons/custom/user_icon.svg" alt="" aria-hidden="true">
+            </span>
+            <span class="customer-filter-label">Customer Type</span>
+            <select id="customer-type-filter">
+              <option value="">Customer type</option>
+              <option value="Individual">Individual</option>
+              <option value="Corporate">Corporate</option>
+            </select>
+          </div>
+
+          <div class="filter-select customer-filter-pill customer-status-filter">
+            <span class="filter-icon">
+              <img src="assets/images/icons/custom/badge_check_icon.svg" alt="" aria-hidden="true">
+            </span>
+            <span class="customer-filter-label">Account Status</span>
+            <select id="customer-status-filter">
+              <option value="">Account status</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+
+          <button type="button" id="reset-customer-filters" class="btn-icon" title="Reset Filters" aria-label="Reset filters">
+            <img src="assets/images/icons/custom/refresh_icon.png" alt="" aria-hidden="true">
+          </button>
+        </div>
+
+        <!-- Customers Table -->
+        <div class="products-table-container customer-table-card">
+          <div class="table-header customer-table-toolbar">
+            <span id="customers-count">Showing 0 customers</span>
+            <label class="per-page-selector customer-per-page-selector" for="customer-per-page">
+              <span>Per Page:</span>
+              <select id="customer-per-page">
+                <option value="10">10</option>
+                <option value="25" selected>25</option>
+                <option value="50">50</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="products-table customer-main-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Customer Name</th>
+                  <th>Contact Information</th>
+                  <th>
+                    <span title="Account balance is the unpaid amount the customer still owes. It is used with the credit limit to show available credit.">Account Balance</span>
+                  </th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="customers-tbody">
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <div class="bulk-actions">
+              <span id="customers-showing">Showing 0 of 0 customers</span>
+              <button type="button" id="export-customers-csv" class="btn-sm">
+                <img src="assets/images/icons/custom/download_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                <span>Export CSV</span>
+              </button>
+            </div>
+            <div class="pagination" id="customers-pagination"></div>
+          </div>
+        </div>
+
+
+        <!-- Customer View Templates -->
+        <template id="customer-row-template">
+          <tr class="customer-row-template-item">
+            <td><span class="customer-id-pill" data-customer-id></span></td>
+            <td>
+              <div class="customer-name-cell">
+                <div class="customer-name-info">
+                  <h4 data-customer-name></h4>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contact-info-cell contact-inline-cell">
+                <div class="contact-row email" data-contact-email-row title="">
+                  <img src="assets/images/icons/custom/mail_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                  <span data-customer-email></span>
+                </div>
+                <div class="contact-row phone" data-contact-phone-row title="">
+                  <img src="assets/images/icons/custom/phone_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                  <span data-customer-phone></span>
+                </div>
+                <span class="customer-muted" data-contact-empty>No contact details</span>
+              </div>
+            </td>
+            <td>
+              <div class="balance-display">
+                <span class="balance-amount" data-customer-balance></span>
+                <span class="balance-due-badge" data-balance-due>Due</span>
+              </div>
+            </td>
+            <td>
+              <span class="status-badge customer-status-badge" data-customer-status-badge>
+                <span data-customer-status></span>
+              </span>
+            </td>
+            <td>
+              <div class="customer-actions-menu">
+                <button class="customer-action-trigger" data-customer-actions title="Actions" aria-label="Actions" aria-haspopup="menu" aria-expanded="false">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="12" cy="5" r="1"></circle>
+                    <circle cx="12" cy="19" r="1"></circle>
+                  </svg>
+                </button>
+                <div class="customer-actions-dropdown" role="menu">
+                  <button type="button" class="customer-menu-item" data-action="view" role="menuitem">
+                    <img src="assets/images/icons/custom/eye_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                    <span>View Profile</span>
+                  </button>
+                  <button type="button" class="customer-menu-item" data-action="edit" role="menuitem">
+                    <img src="assets/images/icons/custom/edit_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                    <span>Edit Customer</span>
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </template>
+
+        <template id="customer-empty-row-template">
+          <tr class="customer-empty-row">
+            <td colspan="6">
+              <div class="customer-empty-state">
+                <span class="customer-empty-icon">
+                  <img src="assets/images/icons/custom/customers_icon.svg" alt="" class="app-icon" aria-hidden="true">
+                </span>
+                <strong data-empty-title>No customers found</strong>
+                <span data-empty-message>Try another search or reset the filters.</span>
+              </div>
+            </td>
+          </tr>
+        </template>
+
+        <template id="customer-history-row-template">
+          <tr>
+            <td class="customer-history-date" data-history-date></td>
+            <td class="customer-history-doc" data-history-document></td>
+            <td><span class="customer-history-type" data-history-type></span></td>
+            <td class="customer-history-amount" data-history-amount></td>
+            <td><span class="customer-history-status" data-history-status></span></td>
+          </tr>
+        </template>
+
+        <template id="customer-history-empty-template">
+          <tr>
+            <td colspan="5" class="customer-history-empty">No purchase history</td>
+          </tr>
+        </template>
+
+        <template id="customer-pagination-page-template">
+          <button type="button" class="pagination-btn" data-page>
+            <span data-pagination-label></span>
+          </button>
+        </template>
+
+        <template id="customer-pagination-arrow-template">
+          <button type="button" class="pagination-btn pagination-arrow" data-page>
+            <span class="customer-pagination-arrow-icon" data-pagination-icon aria-hidden="true"></span>
+          </button>
+        </template>
+
+        <template id="customer-pagination-ellipsis-template">
+          <span class="pagination-ellipsis">...</span>
+        </template>
+      </div>
+
+      <!-- Customer Profile Modal -->
+      <div id="customer-profile-modal" class="modal-overlay customer-profile-overlay" style="display: none;">
+        <div class="modal customer-profile-modal">
+          <div class="modal-header customer-profile-header">
+            <div class="customer-profile-heading">
+              <div id="profile-avatar" class="customer-avatar profile-avatar"></div>
+              <div>
+                <h2 id="profile-name" class="customer-profile-name"></h2>
+                <p id="profile-id" class="customer-profile-id"></p>
+              </div>
+            </div>
+            <div class="customer-profile-actions">
+              <button type="button" class="btn-secondary btn-sm" id="profile-edit-btn">
+                <img src="assets/images/icons/custom/edit_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                Edit
+              </button>
+              <button type="button" class="btn-secondary btn-sm" id="profile-statement-btn">
+                <img src="assets/images/icons/custom/file_text_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                Statement
+              </button>
+              <button type="button" class="modal-close" data-customer-modal-close aria-label="Close customer profile">âœ•</button>
+            </div>
+          </div>
+
+          <div class="modal-body customer-profile-body">
+            <div class="customer-profile-grid">
+              <section class="customer-profile-card">
+                <h4 class="customer-profile-card-title">
+                  <img src="assets/images/icons/custom/clipboard_tasks_icon.png" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                  Contact Information
+                </h4>
+                <div class="profile-info-row">
+                  <span class="profile-info-label">Name</span>
+                  <span class="profile-info-value" id="profile-contact-name"></span>
+                </div>
+                <div class="profile-info-row">
+                  <span class="profile-info-label">Email</span>
+                  <span class="profile-info-value">
+                    <img src="assets/images/icons/custom/mail_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                    <span id="profile-contact-email"></span>
+                  </span>
+                </div>
+                <div class="profile-info-row">
+                  <span class="profile-info-label">Phone</span>
+                  <span class="profile-info-value">
+                    <img src="assets/images/icons/custom/phone_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                    <span id="profile-contact-phone"></span>
+                  </span>
+                </div>
+                <div class="profile-info-row">
+                  <span class="profile-info-label">Address</span>
+                  <span class="profile-info-value" id="profile-contact-address"></span>
+                </div>
+                <div class="profile-info-row">
+                  <span class="profile-info-label">Customer Since</span>
+                  <span class="profile-info-value" id="profile-contact-since"></span>
+                </div>
+              </section>
+
+              <section class="customer-profile-card">
+                <h4 class="customer-profile-card-title">
+                  <img src="assets/images/icons/custom/wallet_icon.png" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                  Account Summary
+                </h4>
+                <div class="balance-card">
+                  <div class="balance-card-label">Current Balance</div>
+                  <div class="balance-card-header">
+                    <span class="balance-card-value" id="profile-current-balance"></span>
+                    <div class="customer-credit-limit">
+                      <div class="balance-card-label">Credit Limit</div>
+                      <div class="customer-credit-limit-value" id="profile-credit-limit"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="available-credit">
+                  <span class="available-credit-label">Available Credit</span>
+                  <span class="available-credit-value" id="profile-available-credit"></span>
+                </div>
+                <div class="stats-row">
+                  <div>
+                    <div class="stat-mini-label">Total Purchases</div>
+                    <div class="stat-mini-value"><span id="profile-total-purchases"></span> <small>(Lifetime)</small></div>
+                  </div>
+                  <div class="customer-last-purchase">
+                    <div class="stat-mini-label">Last Purchase</div>
+                    <div class="stat-mini-value" id="profile-last-purchase"></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <section class="customer-profile-card customer-history-card">
+              <div class="customer-history-header">
+                <h4 class="customer-profile-card-title">
+                  <img src="assets/images/icons/custom/bar_chart_icon.png" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                  Purchase History
+                </h4>
+              </div>
+              <div class="table-wrapper">
+                <table class="products-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Document #</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="profile-purchase-history"></tbody>
+                </table>
+              </div>
+              <div class="customer-history-footer">
+                <button type="button" class="btn-text customer-history-link">View All Transactions</button>
+                <button type="button" class="btn-text">
+                  <img src="assets/images/icons/custom/export_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                  Export History
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-primary" data-customer-modal-close>Done</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add/Edit Customer Modal -->
+      <div id="customer-form-modal" class="modal-overlay customer-form-overlay" style="display: none;">
+        <div class="modal customer-form-modal">
+          <div class="modal-header">
+            <h2 id="customer-form-title">Add Customer</h2>
+            <button type="button" class="modal-close" data-customer-modal-close aria-label="Close customer form">âœ•</button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="customer-edit-id">
+            <div class="form-group">
+              <label for="customer-name">Customer Name *</label>
+              <input type="text" id="customer-name" class="customer-form-control" placeholder="Full name or company name">
+            </div>
+            <div class="customer-form-row">
+              <div class="form-group">
+                <label for="customer-email">Email</label>
+                <input type="email" id="customer-email" class="customer-form-control" placeholder="Email address">
+              </div>
+              <div class="form-group">
+                <label for="customer-phone">Phone</label>
+                <input type="text" id="customer-phone" class="customer-form-control" placeholder="Phone number">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="customer-address">Address</label>
+              <textarea id="customer-address" class="customer-form-control" rows="2" placeholder="Street address"></textarea>
+            </div>
+            <div class="customer-form-row">
+              <div class="form-group">
+                <label for="customer-type">Type</label>
+                <select id="customer-type" class="customer-form-control">
+                  <option value="Individual">Individual</option>
+                  <option value="Corporate">Corporate</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="customer-credit-limit">Credit Limit</label>
+                <input type="number" id="customer-credit-limit" class="customer-form-control" value="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="customer-status">Status</label>
+              <select id="customer-status" class="customer-form-control">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" data-customer-modal-close>Cancel</button>
+            <button type="button" class="btn-primary" id="save-customer-btn">Save Customer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reports View -->
+      <div id="reports-view" class="view">
+        <div class="view-header">
+          <div>
+            <h1>Reports</h1>
+            <p class="view-subtitle">Generate and export business reports for analysis and record-keeping.</p>
+          </div>
+          <div class="header-actions">
+            <select id="report-date-range" class="period-select">
+              <option value="today" selected>Today</option>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+              <option value="quarter">This Quarter</option>
+              <option value="year">This Year</option>
+              <option value="custom">Custom Range</option>
+            </select>
+            <div id="custom-date-range" style="display: none; gap: 8px;">
+              <input type="date" id="report-start-date" class="date-input">
+              <span>to</span>
+              <input type="date" id="report-end-date" class="date-input">
+            </div>
+            <select id="report-format" class="period-select">
+              <option value="csv" selected>CSV</option>
+              <option value="pdf">PDF</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Report Categories -->
+        <div class="reports-grid">
+          <!-- Sales Reports -->
+          <div class="report-category">
+            <div class="category-header">
+              <span class="category-icon">ðŸ’°</span>
+              <h3>SALES REPORTS</h3>
+            </div>
+            <div class="report-cards">
+              <div class="report-card" data-report="sales-summary">
+                <div class="report-card-icon">ðŸ“Š</div>
+                <div class="report-card-info">
+                  <h4>Sales Summary</h4>
+                  <p>Overview of sales performance with totals, averages, and trends</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="sales-by-product">
+                <div class="report-card-icon">ðŸ“¦</div>
+                <div class="report-card-info">
+                  <h4>Sales by Product</h4>
+                  <p>Product-level breakdown of quantities sold and revenue</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="sales-by-customer">
+                <div class="report-card-icon">ðŸ‘¥</div>
+                <div class="report-card-info">
+                  <h4>Sales by Customer</h4>
+                  <p>Customer purchase analysis with totals and frequency</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="sales-by-category">
+                <div class="report-card-icon">ðŸ·ï¸</div>
+                <div class="report-card-info">
+                  <h4>Sales by Category</h4>
+                  <p>Revenue breakdown by product category</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inventory Reports -->
+          <div class="report-category">
+            <div class="category-header">
+              <span class="category-icon">ðŸ“‹</span>
+              <h3>INVENTORY REPORTS</h3>
+            </div>
+            <div class="report-cards">
+              <div class="report-card" data-report="stock-status">
+                <div class="report-card-icon">ðŸ“¦</div>
+                <div class="report-card-info">
+                  <h4>Stock Status Report</h4>
+                  <p>Current stock levels for all products with status indicators</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="stock-movement">
+                <div class="report-card-icon">ðŸ”„</div>
+                <div class="report-card-info">
+                  <h4>Stock Movement Report</h4>
+                  <p>In/out transaction history for the selected period</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="inventory-valuation">
+                <div class="report-card-icon">ðŸ’µ</div>
+                <div class="report-card-info">
+                  <h4>Inventory Valuation</h4>
+                  <p>Stock value using recorded costs, with missing costs identified</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="low-stock">
+                <div class="report-card-icon">âš ï¸</div>
+                <div class="report-card-info">
+                  <h4>Low Stock Report</h4>
+                  <p>Products below reorder level requiring attention</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Financial Reports -->
+          <div class="report-category">
+            <div class="category-header">
+              <span class="category-icon">ðŸ“ˆ</span>
+              <h3>FINANCIAL REPORTS</h3>
+            </div>
+            <div class="report-cards">
+              <div class="report-card" data-report="profit-loss">
+                <div class="report-card-icon">ðŸ“‰</div>
+                <div class="report-card-info">
+                  <h4>Profit & Loss</h4>
+                  <p>Gross profit requires transaction-time cost; net profit requires recorded expenses</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="tax-summary">
+                <div class="report-card-icon">ðŸ§¾</div>
+                <div class="report-card-info">
+                  <h4>Tax Summary</h4>
+                  <p>Tax collected breakdown by rate and period</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="accounts-receivable">
+                <div class="report-card-icon">ðŸ’°</div>
+                <div class="report-card-info">
+                  <h4>Accounts Receivable Aging</h4>
+                  <p>Outstanding invoices by age and customer</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="daily-summary">
+                <div class="report-card-icon">ðŸ“…</div>
+                <div class="report-card-info">
+                  <h4>Daily Sales Summary</h4>
+                  <p>Day-by-day breakdown of sales and transactions</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Reports -->
+          <div class="report-category">
+            <div class="category-header">
+              <span class="category-icon">ðŸ“„</span>
+              <h3>DOCUMENT REPORTS</h3>
+            </div>
+            <div class="report-cards">
+              <div class="report-card" data-report="quotation-summary">
+                <div class="report-card-icon">ðŸ“„</div>
+                <div class="report-card-info">
+                  <h4>Quotation Summary</h4>
+                  <p>Quotes issued with conversion rates</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="invoice-summary">
+                <div class="report-card-icon">ðŸ§¾</div>
+                <div class="report-card-info">
+                  <h4>Invoice Summary</h4>
+                  <p>Invoice status breakdown with payment tracking</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="customer-statements">
+                <div class="report-card-icon">ðŸ‘¤</div>
+                <div class="report-card-info">
+                  <h4>Customer Statements</h4>
+                  <p>Individual customer account statements</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+              <div class="report-card" data-report="audit-log">
+                <div class="report-card-icon">ðŸ”</div>
+                <div class="report-card-info">
+                  <h4>Audit Log</h4>
+                  <p>System activity and user action logs</p>
+                </div>
+                <button type="button" class="report-generate-btn">Generate</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Report Preview Modal -->
+        <div id="report-preview-modal" class="modal-overlay" style="display: none;">
+          <div class="modal" style="max-width: 1000px; max-height: 90vh;">
+            <div class="modal-header">
+              <h2 id="report-preview-title">Report Preview</h2>
+              <div>
+                <button type="button" class="btn-secondary" id="report-print-btn" style="margin-right: 8px;">ðŸ–¨ï¸
+                  Print</button>
+                <button type="button" class="btn-primary" id="report-download-btn">ðŸ“¥ Download</button>
+                <button type="button" class="modal-close" data-close-modal="report-preview-modal"
+                  style="margin-left: 8px;">âœ•</button>
+              </div>
+            </div>
+            <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+              <div id="report-preview-content">
+                <!-- Dynamic report content -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn-secondary" data-close-modal="report-preview-modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users View -->
+      <div id="users-view" class="view">
+        <div class="view-header">
+          <div>
+            <h1>System Administration</h1>
+            <p class="view-subtitle">Manage staff accounts and custom role permissions.</p>
+          </div>
+        </div>
+
+        <div class="user-management-toolbar">
+          <div class="users-tab-switcher" aria-label="User management view">
+            <button type="button" class="users-tab active" data-view="users-list">USERS</button>
+            <button type="button" class="users-tab" data-view="roles-management">ROLES</button>
+          </div>
+          <button type="button" id="add-user-btn" class="user-add-button">
+            <img src="assets/images/icons/custom/add_icon.svg" alt="" class="app-icon btn-img-icon" aria-hidden="true">
+            <span>Add User</span>
+          </button>
+        </div>
+
+        <!-- Users List Panel -->
+        <div id="users-list-panel" class="users-panel active">
+          <!-- Filters -->
+          <div class="products-filters">
+            <div class="search-wrapper">
+              <img src="assets/images/icons/custom/search_icon.png" alt="" class="search-icon app-icon field-img-icon" aria-hidden="true">
+              <input type="text" id="user-search" placeholder="Search by username or name..." class="search-input">
+            </div>
+
+            <div class="filter-select">
+              <img src="assets/images/icons/custom/staff_shield_icon.svg" alt="" class="filter-icon app-icon field-img-icon" aria-hidden="true">
+              <select id="user-role-filter">
+                <option value="">All Roles</option>
+                <option value="Admin">Admin</option>
+                <option value="Manager">Manager</option>
+                <option value="Cashier">Cashier</option>
+                <option value="Inventory">Inventory</option>
+                <option value="Viewer">Viewer</option>
+              </select>
+            </div>
+
+            <div class="filter-select">
+              <img src="assets/images/icons/custom/refresh_icon.png" alt="" class="filter-icon app-icon field-img-icon" aria-hidden="true">
+              <select id="user-status-filter">
+                <option value="">All</option>
+                <option value="Active">Active</option>
+                <option value="Locked">Locked</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Users Table -->
+          <div class="products-table-container">
+            <div class="table-header products-table-toolbar users-table-toolbar">
+              <span id="users-count">Showing 0 users</span>
+              <label class="per-page-selector" for="user-per-page-select">
+                <span>Per Page:</span>
+                <select id="user-per-page-select">
+                  <option value="10">10</option>
+                  <option value="25" selected>25</option>
+                  <option value="50">50</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="products-table users-table">
+                <thead>
+                  <tr>
+                    <th class="user-username-col">Username</th>
+                    <th class="user-name-col">Full Name</th>
+                    <th class="user-role-col">Role</th>
+                    <th class="user-status-col">Status</th>
+                    <th class="user-last-login-col">Last Login</th>
+                    <th class="actions-col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-tbody"></tbody>
+              </table>
+            </div>
+
+            <!-- Role Summary -->
+            <div class="table-footer users-table-footer">
+              <div class="user-role-summary-footer">
+                <div class="user-role-summary-title">
+                  <img src="assets/images/icons/custom/activity_icon.svg" alt="" class="custom-ui-icon" aria-hidden="true">
+                  <span>Role Summary</span>
+                </div>
+                <div id="role-summary" class="user-role-summary"></div>
+              </div>
+              <div class="pagination" id="users-pagination"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roles Management Panel -->
+        <div id="roles-management-panel" class="users-panel">
+          <div style="display: grid; grid-template-columns: 200px 1fr; gap: 24px;">
+            <!-- Role List Sidebar -->
+            <div>
+              <h3
+                style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 12px;">
+                System Roles</h3>
+              <div id="role-list-sidebar"></div>
+            </div>
+
+            <!-- Permissions Grid -->
+            <div id="permissions-grid"
+              style="background: white; border-radius: 16px; border: 1px solid #e2e8f0; padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div>
+                  <h3 style="font-size: 20px; font-weight: 700;" id="permissions-role-title">Permissions: Manager</h3>
+                  <p style="font-size: 12px; color: #64748b; margin-top: 4px;">Define what users assigned to this role
+                    can view and perform.</p>
+                </div>
+                <span
+                  style="padding: 6px 12px; background: #f8fafc; border-radius: 8px; font-size: 10px; font-weight: 700; color: #64748b;">System
+                  Managed</span>
+              </div>
+              <div id="permissions-list"></div>
+              <div
+                style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end;">
+                <button type="button" class="btn-primary" id="save-roles-btn">Apply Changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add/Edit User Modal -->
+      <div id="user-form-modal" class="modal-overlay" style="display: none;">
+        <div class="modal" style="max-width: 650px; max-height: 90vh;">
+          <div class="modal-header">
+            <h2 id="user-form-title">Add New User</h2>
+            <button type="button" class="modal-close" data-close-modal="user-form-modal">âœ•</button>
+          </div>
+          <div class="modal-body" style="max-height: 55vh; overflow-y: auto;">
+            <input type="hidden" id="user-edit-id">
+
+            <!-- Account Details -->
+            <div style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 16px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div class="form-group">
+                  <label>Username *</label>
+                  <input type="text" id="user-username" placeholder="e.g. john.doe"
+                    style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;">
+                </div>
+                <div class="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" id="user-fullname" placeholder="e.g. John Doe"
+                    style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="user-email" placeholder="john.doe@company.com"
+                  style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;">
+              </div>
+            </div>
+
+            <!-- Role Assignment -->
+            <div style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 16px;">
+              <div class="form-group" style="margin-bottom: 12px;">
+                <label>Role *</label>
+                <select id="user-role" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;">
+                  <option value="Cashier">Cashier</option>
+                  <option value="Inventory">Inventory</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Viewer">Viewer</option>
+                </select>
+              </div>
+              <div id="role-permissions-preview"
+                style="padding: 12px; background: #111827; border-radius: 8px; color: white; font-size: 11px;"></div>
+            </div>
+
+            <!-- New User Password -->
+            <div id="user-password-section" class="user-password-section">
+              <div class="form-group">
+                <label for="user-password">Password *</label>
+                <div class="user-password-control">
+                  <input type="password" id="user-password" placeholder="12+ chars with upper, lower, number, symbol"
+                    autocomplete="new-password">
+                  <button type="button" id="toggle-user-password" class="user-password-toggle"
+                    aria-label="Show password" title="Show password">
+                    <img src="assets/images/icons/custom/eye_icon.svg" alt="" class="app-icon" aria-hidden="true">
+                  </button>
+                </div>
+                <span class="user-password-hint">Password must be at least 12 characters and include uppercase, lowercase, number, and symbol.</span>
+              </div>
+            </div>
+
+            <!-- Additional Permissions -->
+            <div style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 16px;">
+              <h4
+                style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 16px;">
+                Additional Permissions (override role)</h4>
+              <div id="additional-permissions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;"></div>
+            </div>
+
+            <!-- Account Status -->
+            <div
+              style="background: #111827; padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h4 style="color: white; font-size: 14px; font-weight: 600;">Account Active</h4>
+                <p style="color: #94a3b8; font-size: 11px;">Enable or disable account access immediately.</p>
+              </div>
+              <label style="position: relative; display: inline-block; width: 48px; height: 24px; cursor: pointer;">
+                <input type="checkbox" id="user-active" checked style="opacity:0;width:0;height:0;">
+                <span id="user-active-slider"
+                  style="position:absolute;top:0;left:0;right:0;bottom:0;background:#10b981;border-radius:24px;transition:0.3s;"></span>
+                <span id="user-active-dot"
+                  style="position:absolute;height:20px;width:20px;left:22px;bottom:2px;background:white;border-radius:50%;transition:0.3s;"></span>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" data-close-modal="user-form-modal">Cancel</button>
+            <button type="button" class="btn-primary" id="save-user-btn">Save User</button>
+          </div>
+        </div>
+      </div>
+      <!-- Settings View -->
+      <div id="settings-view" class="view">
+        <div class="view-header">
+          <div>
+            <h1>System Configuration</h1>
+            <p class="view-subtitle">Manage global preferences, business identity, and hardware integrations.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" id="save-settings-btn" class="btn-primary">
+              <span>ðŸ’¾</span> Save Settings
+            </button>
+          </div>
+        </div>
+
+        <!-- Settings Navigation Tabs -->
+        <div class="settings-tabs">
+          <button type="button" class="settings-tab active" data-tab="company">ðŸ¢ Company</button>
+          <button type="button" class="settings-tab" data-tab="documents">ðŸ“„ Documents</button>
+          <button type="button" class="settings-tab" data-tab="printers">ðŸ–¨ï¸ Printers</button>
+          <button type="button" class="settings-tab" data-tab="backup">ðŸ’¾ Backup</button>
+          <button type="button" class="settings-tab" data-tab="about">â„¹ï¸ About</button>
+        </div>
+
+        <!-- ============ COMPANY TAB ============ -->
+        <div id="settings-company" class="settings-panel active">
+          <!-- Company Information -->
+          <div class="settings-card">
+            <div class="settings-card-header">
+              <span class="settings-card-icon">ðŸ¢</span>
+              <h3>Company Information</h3>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-grid-2col">
+                <div class="form-group">
+                  <label>Company Name *</label>
+                  <input type="text" id="company-name" value="My Business" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Business Logo</label>
+                  <div class="logo-upload-area" id="logo-upload">
+                    <span style="font-size: 32px;">ðŸ¢</span>
+                    <span style="font-size: 11px; color: #94a3b8;">Click to upload (PNG, JPG)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="company-address" value="123 Business Street" class="settings-input">
+              </div>
+              <div class="settings-grid-3col">
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="text" id="company-city" value="New York" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Region</label>
+                  <input type="text" id="company-state" value="NY" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Zip Code</label>
+                  <input type="text" id="company-zip" value="10001" class="settings-input">
+                </div>
+              </div>
+              <div class="settings-grid-2col">
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="text" id="company-phone" value="(555) 123-4567" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" id="company-email" value="info@mybusiness.com" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Website</label>
+                  <input type="text" id="company-website" value="www.mybusiness.com" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>TPIN</label>
+                  <input type="text" id="company-tax-id" value="" class="settings-input" placeholder="e.g. US123456789">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Localization & Tax -->
+          <div class="settings-grid-2col-card">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <span class="settings-card-icon">ðŸŒ</span>
+                <h3>Localization</h3>
+              </div>
+              <div class="settings-card-body">
+                <div class="form-group">
+                  <label>Currency</label>
+                  <select id="localization-currency" class="settings-input">
+                    <option value="MWK">MWK - Malawi Kwacha only</option>
+                  </select>
+                </div>
+                <div class="settings-grid-2col">
+                  <div class="form-group">
+                    <label>Date Format</label>
+                    <select id="localization-date-format" class="settings-input">
+                      <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                      <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                      <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Time Format</label>
+                    <select id="localization-time-format" class="settings-input">
+                      <option value="12-hour">12-hour (AM/PM)</option>
+                      <option value="24-hour">24-hour</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <span class="settings-card-icon">ðŸ’°</span>
+                <h3>Tax Settings</h3>
+              </div>
+              <div class="settings-card-body">
+                <div class="form-group">
+                  <label>Default Tax Rate (%)</label>
+                  <input type="number" id="tax-rate" value="10.0" step="0.1" class="settings-input">
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <span class="toggle-label">Tax inclusive pricing</span>
+                    <p class="toggle-desc">Prices already include the tax amount</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="tax-inclusive" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="settings-toggle-row">
+                  <div>
+                    <span class="toggle-label">Show tax separately on receipts</span>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="tax-show-separate">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label>Local Tax Name</label>
+                  <input type="text" id="tax-name" value="Sales Tax" class="settings-input" placeholder="e.g. GST, VAT">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ DOCUMENTS TAB ============ -->
+        <div id="settings-documents" class="settings-panel">
+          <div class="settings-card">
+            <div class="settings-card-header">
+              <span class="settings-card-icon">ðŸ“„</span>
+              <h3>Document Settings</h3>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-grid-2col">
+                <div class="form-group">
+                  <label>Invoice Prefix</label>
+                  <input type="text" id="doc-invoice-prefix" value="INV-" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Quotation Prefix</label>
+                  <input type="text" id="doc-quote-prefix" value="QUO-" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Default Invoice Due Days</label>
+                  <input type="number" id="doc-due-days" value="30" class="settings-input">
+                </div>
+                <div class="form-group">
+                  <label>Default Quote Validity Days</label>
+                  <input type="number" id="doc-validity-days" value="30" class="settings-input">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Invoice Footer Text</label>
+                <textarea id="doc-invoice-footer" rows="3" class="settings-input"
+                  placeholder="Terms and conditions...">Thank you for your business! Payment is due within 30 days.</textarea>
+              </div>
+              <div class="form-group">
+                <label>Quote Footer Text</label>
+                <textarea id="doc-quote-footer" rows="3" class="settings-input"
+                  placeholder="Quote terms...">This quotation is valid for 30 days. Prices are subject to change.</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ PRINTERS TAB ============ -->
+        <div id="settings-printers" class="settings-panel">
+          <div class="settings-card">
+            <div class="settings-card-header">
+              <span class="settings-card-icon">ðŸ–¨ï¸</span>
+              <h3>Receipt Printer</h3>
+              <button type="button" class="btn-secondary btn-sm" id="test-print-btn">Test Print</button>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-grid-2col">
+                <div class="form-group">
+                  <label>Printer Device</label>
+                  <select id="printer-device" class="settings-input">
+                    
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Paper Size</label>
+                  <select id="printer-paper-size" class="settings-input">
+                    <option>80mm</option>
+                    <option>58mm</option>
+                    <option>A4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="settings-toggle-row">
+                <span class="toggle-label">Auto-cut after printing</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="printer-auto-cut" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-toggle-row">
+                <span class="toggle-label">Open cash drawer after print</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="printer-open-drawer" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label>Receipt Header</label>
+                <input type="text" id="printer-header" value="Thank you for your business!" class="settings-input">
+              </div>
+              <div class="form-group">
+                <label>Receipt Footer</label>
+                <input type="text" id="printer-footer" value="Please come again" class="settings-input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ BACKUP TAB ============ -->
+        <div id="settings-backup" class="settings-panel">
+          <div class="settings-card">
+            <div class="settings-card-header">
+              <span class="settings-card-icon">ðŸ’¾</span>
+              <h3>Automatic Backup</h3>
+              <span class="badge-scheduled">Scheduled</span>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-toggle-row">
+                <div>
+                  <span class="toggle-label">Enable automatic backups</span>
+                  <p class="toggle-desc">Regular snapshots protect your data against failure.</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="backup-enabled" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="settings-grid-2col">
+                <div class="form-group">
+                  <label>Backup Frequency</label>
+                  <select id="backup-frequency" class="settings-input">
+                    <option>Daily</option>
+                    <option>Weekly</option>
+                    <option>Monthly</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Backup Time</label>
+                  <input type="time" id="backup-time" value="02:00" class="settings-input">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Retention (days)</label>
+                <input type="number" id="backup-retention" value="30" class="settings-input" style="max-width: 150px;">
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-grid-2col-card">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <span class="settings-card-icon">ðŸ“¦</span>
+                <h3>Manual Backup</h3>
+              </div>
+              <div class="settings-card-body" style="text-align: center;">
+                <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">Create an immediate backup of the
+                  current database.</p>
+                <button type="button" class="btn-primary" id="create-backup-btn">Create Backup Now</button>
+                <div style="margin-top: 16px; font-size: 11px; color: #94a3b8;">
+                  <span>Last Backup: <strong id="last-backup-info">Never</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-card" style="background: #fffbeb; border-color: #fde68a;">
+              <div class="settings-card-header">
+                <span class="settings-card-icon">âš ï¸</span>
+                <h3 style="color: #92400e;">Restore Database</h3>
+              </div>
+              <div class="settings-card-body" style="text-align: center;">
+                <p style="font-size: 12px; color: #92400e; margin-bottom: 16px; font-weight: 500;">
+                  âš ï¸ Warning: Restoring will overwrite current data.
+                </p>
+                <button type="button" class="btn-secondary" id="restore-backup-btn"
+                  style="color: #92400e; border-color: #fde68a;">
+                  Select Backup File...
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ ABOUT TAB ============ -->
+        <div id="settings-about" class="settings-panel">
+          <div class="settings-card" style="text-align: center; padding: 60px 40px;">
+            <div style="font-size: 64px; margin-bottom: 20px;">ðŸ“Š</div>
+            <h2 style="font-size: 28px; font-weight: 800; color: #1e293b; margin-bottom: 8px;">Sales & Inventory System
+            </h2>
+            <p
+              style="font-size: 13px; font-weight: 600; color: #4f46e5; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">
+              Version 1.0.0</p>
+            <p style="max-width: 500px; margin: 0 auto 30px; color: #64748b; line-height: 1.6;">
+              A comprehensive business management solution for sales, inventory tracking, customer management, and
+              reporting.
+            </p>
+            <div
+              style="display: flex; justify-content: center; gap: 40px; padding: 24px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; margin-bottom: 20px;">
+              <div style="text-align: center;">
+                <span
+                  style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Platform</span>
+                <p style="font-weight: 600; color: #1e293b;">Windows Desktop</p>
+              </div>
+              <div style="text-align: center;">
+                <span
+                  style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Framework</span>
+                <p style="font-weight: 600; color: #1e293b;">Electron + Node.js</p>
+              </div>
+              <div style="text-align: center;">
+                <span
+                  style="font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Database</span>
+                <p style="font-weight: 600; color: #1e293b;">SQLite</p>
+              </div>
+            </div>
+            <p style="font-size: 11px; color: #94a3b8;">Â© 2024 Sales & Inventory System. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div id="pos-payment-modal" class="modal-overlay pos-payment-modal-overlay" style="display: none;">
+        <div class="modal pos-payment-modal" role="dialog" aria-modal="true" aria-labelledby="pos-payment-title">
+          <div class="modal-header">
+            <div>
+              <h2 id="pos-payment-title">Process Payment</h2>
+              <p>Transaction Checkout</p>
+            </div>
+            <button type="button" class="modal-close" data-payment-close aria-label="Close payment window">&times;</button>
+          </div>
+          <form id="pos-payment-form" class="pos-payment-form">
+            <div class="modal-body pos-payment-modal-body">
+              <div class="pos-payment-total"><span>Total Amount Due</span><strong data-payment-total>0.00</strong></div>
+              <section class="pos-payment-section">
+                <div class="pos-payment-label">Select Payment Method</div>
+                <div class="pos-payment-method-grid">
+                  <button type="button" class="pos-payment-method" data-payment-method="card"><span>Card</span></button>
+                  <button type="button" class="pos-payment-method" data-payment-method="mobile"><span>Mobile</span></button>
+                  <button type="button" class="pos-payment-method" data-payment-method="bank"><span>Bank</span></button>
+                  <button type="button" class="pos-payment-method" data-payment-method="credit"><span>Credit</span></button>
+                </div>
+              </section>
+              <section class="pos-payment-amount-grid">
+                <label class="pos-payment-field" for="pos-payment-received"><span>Amount Received</span><div class="pos-payment-amount-input"><span data-currency-symbol>K</span><input type="number" id="pos-payment-received" min="0" step="0.01" inputmode="decimal" placeholder="0"></div></label>
+                <div class="pos-change-field"><span>Change Due</span><div class="pos-change-card" data-change-card><span data-change-label>Amount Due</span><strong data-change-amount>0.00</strong></div></div>
+              </section>
+              <div class="pos-payment-quick-actions"><button type="button" data-payment-quick="20">20</button><button type="button" data-payment-quick="50">50</button><button type="button" data-payment-quick="100">100</button></div>
+              <label class="pos-payment-notes" for="pos-payment-reference"><span>Reference / Notes</span><div><img src="assets/images/icons/custom/file_text_icon.svg" alt="" class="custom-ui-icon" aria-hidden="true"><textarea id="pos-payment-reference" rows="3" placeholder="Internal transaction reference..."></textarea></div></label>
+              <div class="pos-receipt-options"><label><input type="checkbox" id="pos-print-receipt" checked><span>Print Receipt</span></label><label><input type="checkbox" id="pos-email-receipt"><span>Email To Customer</span></label></div>
+            </div>
+            <div class="modal-footer pos-payment-footer"><button type="button" class="btn-secondary pos-payment-cancel" data-payment-cancel>Cancel</button><button type="submit" class="btn-primary pos-process-payment" id="pos-process-payment-btn"><span>Process Payment</span></button></div>
+          </form>
+        </div>
+      </div>
+
+
+      <div id="pos-customer-form-modal" class="modal-overlay pos-customer-modal-overlay" style="display: none;">
+        <div class="modal pos-customer-modal" role="dialog" aria-modal="true" aria-labelledby="pos-customer-modal-title">
+          <div class="modal-header">
+            <div>
+              <h2 id="pos-customer-modal-title">Add Customer</h2>
+            </div>
+            <button type="button" class="modal-close" data-pos-customer-close aria-label="Close customer form">x</button>
+          </div>
+          <form id="pos-customer-form" class="pos-customer-form">
+            <div class="modal-body">
+              <div class="pos-customer-form-grid">
+                <div class="form-group pos-customer-field full">
+                  <label for="pos-new-customer-name">Customer Name *</label>
+                  <input type="text" id="pos-new-customer-name" required placeholder="Full name or company name">
+                </div>
+                <div class="form-group pos-customer-field">
+                  <label for="pos-new-customer-email">Email</label>
+                  <input type="email" id="pos-new-customer-email" placeholder="Email address">
+                </div>
+                <div class="form-group pos-customer-field">
+                  <label for="pos-new-customer-phone">Phone</label>
+                  <input type="tel" id="pos-new-customer-phone" placeholder="Phone number">
+                </div>
+                <div class="form-group pos-customer-field full">
+                  <label for="pos-new-customer-address">Address</label>
+                  <textarea id="pos-new-customer-address" rows="3" placeholder="Street address"></textarea>
+                </div>
+                <div class="form-group pos-customer-field">
+                  <label for="pos-new-customer-type">Type</label>
+                  <select id="pos-new-customer-type">
+                    <option value="Individual">Individual</option>
+                    <option value="Corporate">Corporate</option>
+                  </select>
+                </div>
+                <div class="form-group pos-customer-field">
+                  <label for="pos-new-customer-credit-limit">Credit Limit</label>
+                  <input type="number" id="pos-new-customer-credit-limit" min="0" step="0.01" value="0">
+                </div>
+                <div class="form-group pos-customer-field full">
+                  <label for="pos-new-customer-status">Status</label>
+                  <select id="pos-new-customer-status">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn-secondary pos-customer-cancel" data-pos-customer-close>Cancel</button>
+              <button type="submit" class="btn-primary pos-customer-submit" id="pos-save-customer-btn" disabled>Save Customer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+      <div id="product-form-modal" class="product-modal-overlay">
+        <div class="product-form-modal" role="dialog" aria-modal="true" aria-labelledby="product-form-title">
+          <form id="product-form">
+            <div class="product-modal-header"><div><h2 id="product-form-title">Add New Product</h2><p>Enter product details and starting inventory.</p></div><button type="button" class="product-modal-close" id="close-product-modal" aria-label="Close product form">&times;</button></div>
+            <div class="product-modal-body"><div class="product-form-grid"><input type="hidden" id="modal-product-id"><label><span>Product ID</span><input type="text" id="modal-product-public-id" readonly></label><label><span>Product Name</span><input type="text" id="modal-product-name" required placeholder="e.g. Product name"></label><label><span>SKU</span><input type="text" id="modal-product-sku" placeholder="Auto-generated if empty"></label><label><span>Category</span><select id="modal-product-category"></select></label><label class="full"><span>Description</span><textarea id="modal-product-description" rows="3" placeholder="Short product description"></textarea></label><label><span>Cost Price</span><input type="number" id="modal-product-cost" min="0" step="0.01" placeholder="0.00"></label><label><span>Selling Price</span><input type="number" id="modal-product-price" min="0" step="0.01" required placeholder="0.00"></label><label><span>Initial Stock</span><input type="number" id="modal-product-stock" min="0" step="1" placeholder="0"></label><label><span>Reorder Level</span><input type="number" id="modal-product-reorder" min="0" step="1" placeholder="10"></label><label><span>Status</span><select id="modal-product-status"><option value="active">Active</option><option value="inactive">Inactive</option></select></label></div></div>
+            <div class="product-modal-footer"><button type="button" class="btn-secondary" id="cancel-product-form">Cancel</button><button type="submit" class="btn-primary" id="save-product-form">Save Product</button></div>
+          </form>
+        </div>
+      </div>
+
+
+      <div id="category-modal" class="category-modal-overlay">
+        <div class="category-modal" role="dialog" aria-modal="true" aria-labelledby="category-modal-title">
+          <div class="category-modal-header"><div><h2 id="category-modal-title"><img src="assets/images/icons/custom/category_tag_icon.png" alt="" class="custom-ui-icon category-modal-title-icon" aria-hidden="true"> Manage Categories</h2><p>Create categories and review how products are organized.</p></div><button type="button" class="category-modal-close" id="close-category-modal" aria-label="Close category manager">&times;</button></div>
+          <div class="category-modal-body"><form class="category-create-panel" id="category-form"><div class="category-section-label"><span>New Category</span></div><label><span>Category Name</span><input type="text" id="category-name-input" placeholder="e.g. Plumbing" required></label><label><span>Description</span><textarea id="category-description-input" rows="5" placeholder="Short description..."></textarea></label><button type="submit" class="category-create-btn"><img src="assets/images/icons/custom/save_icon.svg" alt="" class="custom-ui-icon" aria-hidden="true">Create</button></form><section class="category-list-panel"><div class="category-list-heading"><span>Available Categories</span><strong id="category-total-count">0 Total</strong></div><div class="category-list" id="category-list"></div></section></div>
+          <div class="category-modal-footer"><button type="button" class="btn-secondary" id="close-category-footer">Close</button></div>
+        </div>
+      </div>
+
+
+      <div id="document-customer-form-modal" class="modal-overlay documents-customer-modal-overlay" style="display: none;">
+        <div class="modal pos-customer-modal documents-customer-modal" role="dialog" aria-modal="true" aria-labelledby="document-customer-modal-title">
+          <div class="modal-header">
+            <div>
+              <h2 id="document-customer-modal-title">Add New Customer</h2>
+              <p>Register Customer Profile</p>
+            </div>
+            <button type="button" class="modal-close" data-document-customer-close aria-label="Close customer form">
+              <i data-lucide="x" aria-hidden="true"></i>
+              <span class="documents-close-fallback" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="document-customer-form" class="pos-customer-form">
+            <div class="modal-body">
+              <div class="pos-customer-type-toggle" role="group" aria-label="Customer type">
+                <button type="button" class="pos-customer-type active" data-document-customer-type="Individual" aria-pressed="true">Individual</button>
+                <button type="button" class="pos-customer-type" data-document-customer-type="Corporate" aria-pressed="false">Corporate</button>
+              </div>
+              <div class="pos-customer-form-grid">
+                <div class="form-group pos-customer-field full">
+                  <label for="document-new-customer-name">Full Name</label>
+                  <input type="text" id="document-new-customer-name" required placeholder="e.g. John Doe / ABC Corp">
+                </div>
+                <div class="form-group pos-customer-field full">
+                  <label for="document-new-customer-phone">Phone Number</label>
+                  <input type="tel" id="document-new-customer-phone" placeholder="e.g. 555-0123">
+                </div>
+                <div class="form-group pos-customer-field full">
+                  <label for="document-new-customer-email">Email Address</label>
+                  <input type="email" id="document-new-customer-email" placeholder="e.g. name@email.com">
+                </div>
+                <div class="form-group pos-customer-field full">
+                  <label for="document-new-customer-address">Billing Address</label>
+                  <textarea id="document-new-customer-address" rows="3" placeholder="Billing address"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn-primary pos-customer-submit" id="document-save-customer-btn" disabled>Create & Select</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+      <div id="user-details-modal" class="modal-overlay user-feature-modal" style="display:none"><div class="modal user-feature-dialog"><div class="modal-header"><div><span class="user-modal-eyebrow">User Profile</span><h2 id="user-details-title">User Details</h2></div><button type="button" class="modal-close" data-user-modal-close="user-details-modal" aria-label="Close">&times;</button></div><div id="user-details-body" class="modal-body"></div><div class="modal-footer"><button type="button" class="btn-primary" id="user-details-reset-password">Reset Password</button><button type="button" class="btn-secondary" data-user-modal-close="user-details-modal">Close</button></div></div></div>
+      <div id="profile-reset-password-modal" class="modal-overlay user-feature-modal" style="display:none"><form class="modal user-feature-dialog user-password-dialog" id="profile-reset-password-form"><div class="modal-header"><div><span class="user-modal-eyebrow">Profile Security</span><h2>Reset Password</h2></div><button type="button" class="modal-close" data-profile-password-close aria-label="Close">&times;</button></div><div class="modal-body"><p class="user-modal-intro">Update the password for <strong id="profile-reset-password-name">your profile</strong>.</p><div class="form-group"><label for="profile-current-password">Current Password *</label><input type="password" id="profile-current-password" autocomplete="current-password" required></div><div class="form-group"><label for="profile-new-password">New Password *</label><input type="password" id="profile-new-password" autocomplete="new-password" required></div><div class="form-group"><label for="profile-confirm-password">Confirm New Password *</label><input type="password" id="profile-confirm-password" autocomplete="new-password" required></div><span class="user-password-hint">Password must be at least 12 characters and include uppercase, lowercase, number, and symbol.</span><div class="profile-password-error" id="profile-password-error" role="alert"></div></div><div class="modal-footer"><button type="button" class="btn-secondary" data-profile-password-close>Cancel</button><button type="submit" class="btn-primary" id="profile-reset-password-submit">Update Password</button></div></form></div>
+      <div id="reset-user-password-modal" class="modal-overlay user-feature-modal" style="display:none"><div class="modal user-feature-dialog user-password-dialog"><div class="modal-header"><div><span class="user-modal-eyebrow">Account Security</span><h2>Reset Password</h2></div><button type="button" class="modal-close" data-user-modal-close="reset-user-password-modal" aria-label="Close">&times;</button></div><div class="modal-body"><p class="user-modal-intro">Set a new password for <strong id="reset-user-name"></strong>.</p><div class="form-group"><label for="reset-user-password">New Password *</label><input type="password" id="reset-user-password" autocomplete="new-password"></div><div class="form-group"><label for="confirm-reset-user-password">Confirm Password *</label><input type="password" id="confirm-reset-user-password" autocomplete="new-password"></div><span class="user-password-hint">Use a strong password. The password is stored as a secure hash.</span></div><div class="modal-footer"><button type="button" class="btn-secondary" data-user-modal-close="reset-user-password-modal">Cancel</button><button type="button" class="btn-primary" id="confirm-reset-password-btn">Update Password</button></div></div></div>
+      <div id="user-activity-modal" class="modal-overlay user-feature-modal" style="display:none"><div class="modal user-feature-dialog user-activity-dialog"><div class="modal-header"><div><span class="user-modal-eyebrow">Audit History</span><h2 id="user-activity-title">User Activity</h2></div><button type="button" class="modal-close" data-user-modal-close="user-activity-modal" aria-label="Close">&times;</button></div><div id="user-activity-body" class="modal-body"></div><div class="modal-footer"><button type="button" class="btn-secondary" data-user-modal-close="user-activity-modal">Close</button></div></div></div>
+
+
+      <!-- Shared dynamic row/card templates: JS clones these instead of owning repeated structure. -->
+      <template id="app-empty-row-template"><tr><td class="app-empty-cell"><div class="app-empty-state"><span data-empty-title>No records found</span><small data-empty-message></small></div></td></tr></template>
+      <template id="dashboard-list-item-template"><article class="dashboard-list-item"><strong data-title></strong><span data-meta></span><em data-value></em></article></template>
+      <template id="dashboard-transaction-row-template"><tr><td data-time></td><td data-number></td><td data-customer></td><td data-items></td><td data-total></td><td data-status></td></tr></template>
+      <template id="product-table-row-template"><tr><td data-product-id></td><td data-sku></td><td data-name></td><td data-description></td><td data-category></td><td data-price></td><td data-stock></td><td data-status></td><td data-actions></td></tr></template>
+      <template id="inventory-table-row-template"><tr><td data-sku></td><td data-product></td><td data-description></td><td data-category></td><td data-on-hand></td><td data-reserved></td><td data-available></td><td data-reorder></td><td data-status></td><td data-actions></td></tr></template>
+      <template id="pos-cart-item-template"><div class="cart-item"><div class="cart-item-main"><div class="cart-item-title"><span class="cart-item-product-name" data-name></span><span class="cart-item-unit-price" data-price></span></div></div><button class="cart-remove-btn" data-cart-remove aria-label="Remove item"><img src="assets/images/icons/custom/trash_icon.svg" alt="" class="custom-ui-icon" aria-hidden="true"></button><div class="cart-item-controls"><button class="cart-qty-btn" data-quantity-change data-delta="-1">-</button><input class="cart-qty-input" type="number" min="1" step="1" data-cart-quantity><button class="cart-qty-btn" data-quantity-change data-delta="1">+</button></div><div class="cart-item-total" data-total></div></div></template>
+      <template id="document-row-template"><tr><td data-code></td><td data-customer></td><td data-subtotal></td><td data-tax></td><td data-total></td><td data-status></td><td data-actions></td></tr></template>
+      <template id="sales-row-template"><tr><td data-number></td><td data-date></td><td data-customer></td><td data-user></td><td data-items></td><td data-quantity></td><td data-payment></td><td data-total></td><td data-actions class="sales-actions-cell"></td></tr></template>
+      <template id="user-row-template"><tr><td data-username></td><td data-name></td><td data-role></td><td data-status></td><td data-last-login></td><td data-actions></td></tr></template>
+      <template id="stock-history-row-template"><tr><td data-date></td><td data-type></td><td data-change></td><td data-before></td><td data-after></td><td data-notes></td></tr></template>
+      <template id="pos-product-row-template"><tr data-product-id><td class="product-table-product"><div class="product-table-name" data-name></div></td><td class="product-table-description" data-description></td><td class="product-table-category" data-category></td><td data-stock></td><td class="product-table-price" data-price></td><td class="product-table-action" data-action></td></tr></template>
+
+      <template id="document-lookup-row-template"><button type="button" class="documents-lookup-row"><span><strong data-title></strong><em data-meta></em></span><span data-extra></span></button></template>
+      <template id="document-line-row-template"><tr class="document-line" data-line-index><td class="documents-line-index" data-index></td><td><select data-line-field="productId" aria-label="Catalog product"></select><span class="documents-line-meta" data-meta></span></td><td class="documents-line-description" data-description></td><td><input type="number" min="0" step="0.01" data-line-field="unitPrice" aria-label="Unit price"></td><td><input type="number" min="1" step="1" inputmode="numeric" data-line-field="quantity" class="documents-quantity-input" aria-label="Quantity"></td><td><input type="number" min="0" max="100" step="0.01" data-line-field="discountPercent" class="documents-line-discount-input" aria-label="Discount percentage"></td><td class="document-line-total" data-total></td><td><button type="button" class="documents-line-remove" data-line-remove aria-label="Remove line"><img src="assets/images/icons/custom/trash_icon.svg" alt="" class="custom-ui-icon" aria-hidden="true"></button></td></tr></template>
+      <template id="pos-customer-result-template"><button class="customer-result" data-customer-id><div><strong data-name></strong></div><div data-contact></div></button></template>
+      <template id="quick-key-template"><button type="button" class="quick-key-button" data-value><span class="quick-key-label" data-label></span><span class="quick-key-value" data-key></span></button></template>
+
+</main>
+  </div>
+
+  <script src="js/vendor/lucide-fallback.js"></script>
+
+  <!-- Load offline chart library first -->
+  <script src="js/utils/formatters.js"></script>
+  <script src="js/utils/printer.js"></script>
+  <script src="js/utils/template-renderer.js"></script>
+  <script src="js/utils/app-dialogs.js"></script>
+  <script src="js/components/Chart.js"></script>
+
+
+  <!-- Load view modules in order -->
+  <script src="js/views/dashboardView.js"></script>
+  <script src="js/views/ProductsView.js"></script>
+  <script src="js/views/POSView.js"></script>
+  <script src="js/views/POSView.events.js"></script>
+  <script src="js/views/POSView.payment.js"></script>
+  <script src="js/views/InventoryView.js"></script>
+  <script src="js/views/QuotationsInvoicesView.js"></script>
+  <script src="js/views/QuotationsInvoicesView.events.js"></script>
+  <script src="js/views/QuotationsInvoicesView.form.js"></script>
+  <script src="js/views/QuotationsInvoicesView.printing.js"></script>
+  <script src="js/views/QuotationsInvoicesView.actions.js"></script>
+  <script src="js/views/QuotationsInvoicesView.detail.js"></script>
+  <script src="js/views/salesView.js"></script>
+  <script src="js/views/ReportsView.js"></script>
+  <script src="js/views/ReportsView.output.js"></script>
+  <script src="js/views/ReportsView.generators.js"></script>
+  <script src="js/views/CustomersView.js"></script>
+  <script src="js/views/UsersView.js"></script>
+  <script src="js/views/SettingsView.js"></script>
+
+  <!-- Load main app last -->
+  <script src="js/app.js"></script>
+  <script src="js/utils/csp-safe-dom.js"></script>
+
+</body>
+
+</html>

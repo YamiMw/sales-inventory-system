@@ -1,0 +1,12 @@
+/* Status badges without leading icons */
+.documents-status {
+  gap: 0;
+  padding-inline: 14px;
+}
+
+.documents-status i,
+.documents-status svg,
+.documents-status .custom-icon,
+.documents-status .custom-icon-img {
+  display: none !important;
+}

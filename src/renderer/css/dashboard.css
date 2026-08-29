@@ -1,0 +1,23 @@
+.category-legend-item,
+.chart-legend-item,
+.dashboard-legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 0;
+}
+
+.category-legend-item .legend-label,
+.chart-legend-item .legend-label,
+.dashboard-legend-item .legend-label {
+  margin-right: 0;
+  white-space: nowrap;
+}
+
+.category-legend-item .legend-value,
+.chart-legend-item .legend-value,
+.dashboard-legend-item .legend-value {
+  margin-left: 2px;
+  white-space: nowrap;
+}

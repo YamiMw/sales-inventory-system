@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!-- Login: Defines the login and initial administrator setup screen. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'self'; worker-src 'none';">
+  <title>Aliko Business Enterprise</title>
+  <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+  <main class="login-shell" aria-label="Aliko Business Enterprise authentication">
+    <section class="card auth-panel">
+      <div class="auth-content">
+        <div class="card-header">
+          <h2>Sign in</h2>
+          <p>Enter your credentials to access the system</p>
+        </div>
+
+        <form id="login-form">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <div class="field-shell">
+              <span class="input-icon user-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"/></svg>
+              </span>
+              <input id="username" type="text" placeholder="Enter your username" autocomplete="username" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="field-shell">
+              <span class="input-icon password-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-7 0V6a2 2 0 1 1 4 0v2h-4Z"/></svg>
+              </span>
+              <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+              <button type="button" class="password-toggle" id="toggle-password" aria-label="Show password" title="Show password">
+                <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 5c5.2 0 8.8 4.1 10 7-1.2 2.9-4.8 7-10 7S3.2 14.9 2 12c1.2-2.9 4.8-7 10-7Zm0 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2.2a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6Z"/>
+                </svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m3.3 2.3 18.4 18.4-1.4 1.4-3.1-3.1A11.3 11.3 0 0 1 12 20c-5.2 0-8.8-4.1-10-8 .6-1.9 2.1-4 4.2-5.4L1.9 3.7l1.4-1.4Zm5.4 6.8A4 4 0 0 0 14.9 15l-1.7-1.7a1.8 1.8 0 0 1-2.5-2.5L8.7 9.1ZM12 4c5.2 0 8.8 4.1 10 8a12.8 12.8 0 0 1-3.1 4.5l-2.8-2.8A4 4 0 0 0 10.3 8L8.2 5.9A10.8 10.8 0 0 1 12 4Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <input type="checkbox" id="remember-me" hidden>
+
+          <button type="submit" id="login-button" class="auth-button">
+            <svg class="button-lock-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17 9h-1V7A4 4 0 0 0 8 7v2H7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2Zm-7 0V7a2 2 0 1 1 4 0v2h-4Z"/>
+            </svg>
+            <span class="button-text">Login</span>
+            <span class="button-loader" style="display: none;" aria-hidden="true"></span>
+          </button>
+          <div id="login-error" class="error"></div>
+
+          <div class="security-card">
+            <div class="security-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3.5 5.5 6.2v5.2c0 4.2 2.6 7.9 6.5 9.1 3.9-1.2 6.5-4.9 6.5-9.1V6.2L12 3.5Z"/>
+                <path d="m9.2 12.3 2 2 3.7-4"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Secure staff access</h3>
+              <p>Your information is protected and your activity is monitored for security.</p>
+            </div>
+          </div>
+        </form>
+
+        <form id="setup-form" style="display: none;">
+          <div class="input-group">
+            <label for="setup-full-name">Administrator Name</label>
+            <div class="field-shell">
+              <span class="input-icon user-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"/></svg>
+              </span>
+              <input id="setup-full-name" type="text" placeholder="Enter administrator name" autocomplete="name" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="setup-username">Administrator Username</label>
+            <div class="field-shell">
+              <span class="input-icon user-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"/></svg>
+              </span>
+              <input id="setup-username" type="text" placeholder="Choose a username" autocomplete="username" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="setup-email">Email</label>
+            <div class="field-shell">
+              <span class="input-icon email-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Zm2.1.5 6.9 5.4 6.9-5.4H5.1Zm13.4 2.2-6.2 4.8a1 1 0 0 1-1.2 0L5.5 9.2v8.3c0 .3.2.5.5.5h12c.3 0 .5-.2.5-.5V9.2Z"/></svg>
+              </span>
+              <input id="setup-email" type="email" placeholder="Enter email address" autocomplete="email">
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="setup-password">Password</label>
+            <div class="field-shell">
+              <span class="input-icon password-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-7 0V6a2 2 0 1 1 4 0v2h-4Z"/></svg>
+              </span>
+              <input id="setup-password" type="password" placeholder="Create a password" autocomplete="new-password" required>
+              <button type="button" class="password-toggle setup-password-toggle" data-target="setup-password" aria-label="Show password" title="Show password">
+                <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 5c5.2 0 8.8 4.1 10 7-1.2 2.9-4.8 7-10 7S3.2 14.9 2 12c1.2-2.9 4.8-7 10-7Zm0 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2.2a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6Z"/>
+                </svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m3.3 2.3 18.4 18.4-1.4 1.4-3.1-3.1A11.3 11.3 0 0 1 12 20c-5.2 0-8.8-4.1-10-8 .6-1.9 2.1-4 4.2-5.4L1.9 3.7l1.4-1.4Zm5.4 6.8A4 4 0 0 0 14.9 15l-1.7-1.7a1.8 1.8 0 0 1-2.5-2.5L8.7 9.1ZM12 4c5.2 0 8.8 4.1 10 8a12.8 12.8 0 0 1-3.1 4.5l-2.8-2.8A4 4 0 0 0 10.3 8L8.2 5.9A10.8 10.8 0 0 1 12 4Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="setup-password-confirm">Confirm Password</label>
+            <div class="field-shell">
+              <span class="input-icon password-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-7 0V6a2 2 0 1 1 4 0v2h-4Z"/></svg>
+              </span>
+              <input id="setup-password-confirm" type="password" placeholder="Confirm your password" autocomplete="new-password" required>
+              <button type="button" class="password-toggle setup-password-toggle" data-target="setup-password-confirm" aria-label="Show password" title="Show password">
+                <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 5c5.2 0 8.8 4.1 10 7-1.2 2.9-4.8 7-10 7S3.2 14.9 2 12c1.2-2.9 4.8-7 10-7Zm0 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2.2a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6Z"/>
+                </svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m3.3 2.3 18.4 18.4-1.4 1.4-3.1-3.1A11.3 11.3 0 0 1 12 20c-5.2 0-8.8-4.1-10-8 .6-1.9 2.1-4 4.2-5.4L1.9 3.7l1.4-1.4Zm5.4 6.8A4 4 0 0 0 14.9 15l-1.7-1.7a1.8 1.8 0 0 1-2.5-2.5L8.7 9.1ZM12 4c5.2 0 8.8 4.1 10 8a12.8 12.8 0 0 1-3.1 4.5l-2.8-2.8A4 4 0 0 0 10.3 8L8.2 5.9A10.8 10.8 0 0 1 12 4Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button type="submit" id="setup-button" class="auth-button">
+            <span class="button-text">Create Administrator</span>
+            <span class="button-loader" style="display: none;" aria-hidden="true"></span>
+          </button>
+          <div id="setup-error" class="error"></div>
+        </form>
+
+        <form id="change-password-form" style="display: none;">
+          <div class="input-group">
+            <label for="current-password">Current Password</label>
+            <div class="field-shell">
+              <span class="input-icon password-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-7 0V6a2 2 0 1 1 4 0v2h-4Z"/></svg>
+              </span>
+              <input id="current-password" type="password" placeholder="Enter current password" autocomplete="current-password" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="new-password">New Password</label>
+            <div class="field-shell">
+              <span class="input-icon password-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-7 0V6a2 2 0 1 1 4 0v2h-4Z"/></svg>
+              </span>
+              <input id="new-password" type="password" placeholder="Enter new password" autocomplete="new-password" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="new-password-confirm">Confirm New Password</label>
+            <div class="field-shell">
+              <span class="input-icon password-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h-1V6a4 4 0 0 0-8 0v2H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-7 0V6a2 2 0 1 1 4 0v2h-4Z"/></svg>
+              </span>
+              <input id="new-password-confirm" type="password" placeholder="Confirm new password" autocomplete="new-password" required>
+            </div>
+          </div>
+          <button type="submit" id="change-password-button" class="auth-button">
+            <span class="button-text">Change Password</span>
+            <span class="button-loader" style="display: none;" aria-hidden="true"></span>
+          </button>
+          <div id="change-password-error" class="error"></div>
+        </form>
+
+        <div class="footer">
+          <span>Version 2.1.0</span>
+          <span aria-hidden="true">•</span>
+          <span>&copy; 2026 Aliko Business Enterprise</span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="brand-panel" aria-label="System summary">
+      <div class="brand-background-letter" aria-hidden="true">A</div>
+      <div class="brand-panel-content">
+        <div class="brand-logo-emblem" aria-label="Aliko Business Enterprise">
+          <img src="assets/images/logo.png" alt="Aliko Business Enterprise logo" class="brand-logo-image">
+        </div>
+        <h1>Aliko Business Enterprise</h1>
+        <span class="brand-underline" aria-hidden="true"></span>
+        <p class="brand-kicker">Sales &amp; Inventory Management</p>
+        <p class="brand-copy">Secure staff access</p>
+
+        <div class="feature-strip">
+          <div class="feature-item">
+          <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 4h2.2l2.1 10.3a2 2 0 0 0 2 1.7h7.8a2 2 0 0 0 1.9-1.4L21 8H7"/>
+                <path d="M9 20h.1"/>
+                <path d="M18 20h.1"/>
+              </svg>
+            </span>
+            <span><span class="feature-title">Sales</span>Management</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+                <path d="M4.5 8 12 12.3 19.5 8"/>
+                <path d="M12 12.3V21"/>
+              </svg>
+            </span>
+            <span><span class="feature-title">Inventory</span>Tracking</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 19V9"/>
+                <path d="M10 19V5"/>
+                <path d="M15 19v-8"/>
+                <path d="M20 19V3"/>
+              </svg>
+            </span>
+            <span><span class="feature-title">Reports</span>&amp; Analytics</span>
+          </div>
+        </div>
+
+        <div class="system-meta">
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H4V5Zm2 2v6h12V7H6Zm4 10h4v2h4v2H6v-2h4v-2Z"/></svg>
+            Device: <span id="login-device-name">DESKTOP-ALIKO</span>
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v3h6V2h2v3h3v16H4V5h3V2Zm11 8H6v9h12v-9Z"/></svg>
+            <span id="login-date">May 14, 2026</span>
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 .1 0H12Zm1 5v4.4l3.2 3.2-1.4 1.4L11 12.2V7h2Z"/></svg>
+            <span id="login-time">10:42 AM</span>
+          </span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

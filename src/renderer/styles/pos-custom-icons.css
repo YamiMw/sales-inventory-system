@@ -1,0 +1,69 @@
+/* POS custom image icon sizing */
+#pos-view .pos-app-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+#pos-view .pos-back-btn .pos-app-icon,
+#pos-view .pos-back-img {
+  width: 24px;
+  height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+#pos-view .timer-icon .pos-app-icon,
+#pos-view .pos-timer-img {
+  width: 24px;
+  height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+#pos-view .session-btn .pos-app-icon,
+#pos-view .pos-hold-img {
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+}
+
+#pos-view .pos-field-img {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#pos-view .customer-search-wrapper,
+#pos-view .barcode-search-wrapper,
+#pos-view .category-filter-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#pos-view .customer-search-wrapper input,
+#pos-view .barcode-search-wrapper input,
+#pos-view .category-filter-wrapper select {
+  padding-left: 46px;
+}
+
+#pos-view .new-customer-icon .pos-app-icon,
+#pos-view .pos-small-img {
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+}

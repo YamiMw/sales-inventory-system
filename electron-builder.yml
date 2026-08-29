@@ -1,0 +1,25 @@
+appId: com.alikobusinessenterprise.salesinventory
+productName: "Aliko Business Enterprise"
+copyright: "Copyright (C) 2026 Aliko Business Enterprise"
+
+directories:
+  output: dist
+  buildResources: build
+
+compression: maximum
+npmRebuild: true
+asarUnpack:
+  - "node_modules/better-sqlite3/**/*"
+
+win:
+  target:
+    - target: portable
+      arch:
+        - x64
+  icon: resources/icon.ico
+  shortcutName: "Aliko Business Enterprise"
+  requestedExecutionLevel: asInvoker
+
+portable:
+  artifactName: "${productName}-Portable-${version}.exe"
+  requestExecutionLevel: user

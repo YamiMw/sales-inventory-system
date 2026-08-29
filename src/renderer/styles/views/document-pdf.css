@@ -1,0 +1,702 @@
+/* Standalone A4 stylesheet used only by Electron PDF export.
+   It intentionally does not import the application shell or responsive view CSS. */
+@page {
+  size: A4 portrait;
+  margin: 15mm 0 18mm;
+}
+
+:root {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 210mm;
+  min-width: 210mm;
+  min-height: 264mm;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #000000;
+  font-family: Georgia, "Times New Roman", serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  display: block;
+  overflow: visible;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 13mm;
+  right: 13mm;
+  bottom: 8mm;
+  border-bottom: 0.35mm solid #000000;
+  pointer-events: none;
+}
+
+.pdf-document-root {
+  width: 210mm;
+  min-width: 210mm;
+  min-height: 264mm;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+}
+
+.documents-print-sheet,
+.documents-elegant-sheet {
+  width: 210mm;
+  min-width: 210mm;
+  min-height: 264mm;
+  margin: 0;
+  padding: 3mm 13mm 8mm;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: visible;
+  background: #ffffff;
+  color: #000000;
+  box-shadow: none;
+  transform: none;
+  zoom: 1;
+}
+
+.documents-elegant-header,
+.documents-elegant-parties {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 76mm;
+  column-gap: 10mm;
+  align-items: start;
+}
+
+.documents-elegant-brand {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 5mm;
+}
+
+.documents-company-logo,
+.documents-logo-fallback {
+  display: block !important;
+  width: 29mm;
+  height: 29mm;
+  flex: 0 0 29mm;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.documents-elegant-brand > div {
+  min-width: 0;
+}
+
+.documents-elegant-brand h2 {
+  margin: 0;
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 22pt;
+  font-weight: 900;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+
+.documents-elegant-brand p {
+  max-width: 105mm;
+  margin: 3mm 0 0;
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.documents-elegant-title,
+.documents-elegant-billto,
+.documents-elegant-billto-vertical {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.documents-elegant-title h1 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 22pt;
+  font-weight: 900;
+  line-height: 1.02;
+  text-align: right;
+}
+
+.documents-elegant-title dl,
+.documents-elegant-billto dl,
+.documents-elegant-billto-vertical dl {
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: max-content minmax(28mm, max-content);
+  column-gap: 3mm;
+  row-gap: 0.4mm;
+  justify-content: end;
+}
+
+.documents-elegant-title dl > div,
+.documents-elegant-billto dl > div,
+.documents-elegant-billto-vertical dl > div {
+  display: contents;
+}
+
+.documents-elegant-title dt,
+.documents-elegant-title dd,
+.documents-elegant-billto dt,
+.documents-elegant-billto dd,
+.documents-elegant-billto-vertical dt,
+.documents-elegant-billto-vertical dd {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-size: 10pt;
+  line-height: 1.08;
+}
+
+.documents-elegant-title dt,
+.documents-elegant-billto dt,
+.documents-elegant-billto-vertical dt {
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.documents-elegant-title dd,
+.documents-elegant-billto dd,
+.documents-elegant-billto-vertical dd {
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.documents-elegant-parties {
+  min-height: 0;
+  margin-top: 7mm;
+}
+
+.documents-elegant-company-contact p {
+  margin: 0 0 1.1mm;
+  color: #000000;
+  font-size: 10pt;
+  line-height: 1.08;
+}
+
+.documents-elegant-company-contact strong {
+  font-weight: 700;
+}
+
+.documents-elegant-billto h3,
+.documents-elegant-billto-vertical h3 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-size: 13pt;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+}
+
+.documents-elegant-items {
+  width: 100%;
+  margin-right: 0;
+  margin-top: 8mm;
+  break-inside: auto;
+  page-break-inside: auto;
+}
+
+.documents-elegant-items table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: #000000;
+  break-inside: auto;
+  page-break-inside: auto;
+}
+
+.documents-elegant-items thead {
+  display: table-header-group;
+}
+
+.documents-elegant-items tbody {
+  display: table-row-group;
+}
+
+.documents-elegant-items th,
+.documents-elegant-items td {
+  border: 0.35mm solid #000000;
+  height: 7.7mm;
+  padding: 1.15mm 3.2mm;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.documents-elegant-items th {
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-size: 9pt;
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.documents-elegant-items td {
+  background: #ffffff;
+  color: #000000;
+  font-size: 9pt;
+  line-height: 1.12;
+}
+
+.documents-elegant-items th:nth-child(1),
+.documents-elegant-items td:nth-child(1) { width: 6%; text-align: center; }
+.documents-elegant-items th:nth-child(2),
+.documents-elegant-items td:nth-child(2) { width: 24%; }
+.documents-elegant-items th:nth-child(3),
+.documents-elegant-items td:nth-child(3) { width: 30%; }
+.documents-elegant-items th:nth-child(4),
+.documents-elegant-items td:nth-child(4) { width: 16%; text-align: right; }
+.documents-elegant-items th:nth-child(5),
+.documents-elegant-items td:nth-child(5) { width: 8%; text-align: right; }
+.documents-elegant-items th:nth-child(6),
+.documents-elegant-items td:nth-child(6) { width: 16%; text-align: right; }
+
+.documents-elegant-items td strong {
+  display: block;
+  font-weight: 700;
+}
+
+.documents-elegant-items td span,
+.documents-elegant-items td small {
+  display: block;
+  margin-top: 1mm;
+  font-size: 7.8pt;
+  font-style: italic;
+}
+
+.documents-elegant-items tr {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.documents-elegant-summary-area {
+  width: 100%;
+  margin-top: 8mm;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88mm;
+  column-gap: 10mm;
+  row-gap: 2mm;
+  align-items: start;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.documents-payment-and-notes {
+  min-width: 0;
+}
+
+.documents-summary-left-text {
+  margin: 0 0 3mm;
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.documents-bank-details h4,
+.documents-elegant-notes h4 {
+  width: max-content;
+  margin: 0 0 3mm;
+  padding: 0 0 1mm;
+  border-bottom: 0.35mm solid #000000;
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 9pt;
+  font-weight: 800;
+}
+
+.documents-bank-details dl {
+  margin: 0;
+  padding: 0;
+}
+
+.documents-bank-details dl > div {
+  display: grid;
+  grid-template-columns: 29mm minmax(0, 1fr);
+  gap: 2mm;
+}
+
+.documents-bank-details dt,
+.documents-bank-details dd {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 8.5pt;
+  line-height: 1.45;
+}
+
+.documents-elegant-notes {
+  margin-top: 5mm;
+}
+
+.documents-elegant-notes p {
+  margin: 0;
+  color: #000000;
+  font-size: 8.5pt;
+  line-height: 1.4;
+}
+
+.documents-total-summary,
+.documents-elegant-totals,
+.documents-payment-balance {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0.35mm solid #000000;
+  background: #ffffff;
+}
+
+.documents-elegant-totals > div,
+.documents-payment-balance > div {
+  min-height: 8mm;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  border-bottom: 0.25mm solid #000000;
+}
+
+.documents-elegant-totals > div:last-child,
+.documents-payment-balance > div:last-child {
+  border-bottom: 0;
+}
+
+.documents-elegant-totals span,
+.documents-elegant-totals strong,
+.documents-payment-balance span,
+.documents-payment-balance strong {
+  min-height: 8mm;
+  margin: 0;
+  padding: 1.5mm 2.5mm;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #000000;
+  font-size: 8.8pt;
+  line-height: 1.1;
+  text-align: right;
+}
+
+.documents-elegant-totals span,
+.documents-payment-balance span {
+  border-right: 0.25mm solid #000000;
+  font-weight: 400;
+}
+
+.documents-elegant-totals strong,
+.documents-payment-balance strong {
+  font-weight: 400;
+}
+
+.documents-elegant-totals .total {
+  border-top: 0.35mm solid #000000;
+}
+
+.documents-elegant-totals .total span,
+.documents-elegant-totals .total strong {
+  font-size: 10pt;
+  font-weight: 800;
+}
+
+.documents-payment-balance {
+  margin-top: 3mm;
+}
+
+.documents-approval-row {
+  width: 100%;
+  margin-top: 10mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18mm;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.documents-approval-field {
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 3mm;
+}
+
+.documents-approval-label {
+  flex: 0 0 auto;
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.documents-approval-line {
+  min-width: 0;
+  min-height: 9mm;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 2mm 1mm;
+  border-bottom: 0.3mm solid #000000;
+}
+
+.documents-approval-name {
+  color: #000000;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 700;
+  text-align: center;
+}
+
+.documents-manager-signature {
+  display: block;
+  width: auto;
+  max-width: 42mm;
+  height: auto;
+  max-height: 13mm;
+  object-fit: contain;
+}
+
+.documents-elegant-thankyou {
+  margin-top: auto;
+  padding-top: 8mm;
+  color: #000000;
+  font-size: 9pt;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  break-inside: avoid;
+}
+
+.documents-history-panel,
+.documents-history-list,
+.documents-history-row,
+.documents-audit-panel {
+  display: none !important;
+}
+
+/* =====================================================
+   PDF — COMMON VERTICAL START LINE FOR RIGHT-SIDE BLOCKS
+===================================================== */
+.documents-elegant-title,
+.documents-elegant-billto,
+.documents-elegant-billto-vertical {
+  width: 100% !important;
+  max-width: 100% !important;
+  align-items: stretch !important;
+  text-align: left !important;
+}
+
+.documents-elegant-title h1,
+.documents-elegant-billto h3,
+.documents-elegant-billto-vertical h3 {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.documents-elegant-title dl,
+.documents-elegant-billto dl,
+.documents-elegant-billto-vertical dl {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  grid-template-columns: max-content minmax(0, 1fr) !important;
+  column-gap: 3mm !important;
+  row-gap: 0.4mm !important;
+  justify-content: stretch !important;
+}
+
+.documents-elegant-title dt,
+.documents-elegant-title dd,
+.documents-elegant-billto dt,
+.documents-elegant-billto dd,
+.documents-elegant-billto-vertical dt,
+.documents-elegant-billto-vertical dd {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+/* =====================================================
+   PDF RIGHT-POSITION OVERRIDE
+   The right-side blocks occupy the fixed right A4 column while their
+   headings, labels and values share the same internal starting line.
+===================================================== */
+.documents-elegant-header,
+.documents-elegant-parties {
+  grid-template-columns: minmax(0, 1fr) 76mm !important;
+  column-gap: 10mm !important;
+  width: 100% !important;
+}
+
+.documents-elegant-title,
+.documents-elegant-billto,
+.documents-elegant-billto-vertical {
+  grid-column: 2 !important;
+  width: 76mm !important;
+  max-width: 76mm !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  justify-self: end !important;
+  align-self: start !important;
+  align-items: stretch !important;
+  text-align: left !important;
+}
+
+.documents-elegant-title h1,
+.documents-elegant-billto h3,
+.documents-elegant-billto-vertical h3,
+.documents-elegant-title dl,
+.documents-elegant-billto dl,
+.documents-elegant-billto-vertical dl {
+  width: 100% !important;
+  text-align: left !important;
+}
+
+.documents-elegant-title dl,
+.documents-elegant-billto dl,
+.documents-elegant-billto-vertical dl {
+  grid-template-columns: 27mm minmax(0, 1fr) !important;
+  column-gap: 3mm !important;
+  justify-content: stretch !important;
+}
+
+.documents-elegant-title dt,
+.documents-elegant-title dd,
+.documents-elegant-billto dt,
+.documents-elegant-billto dd,
+.documents-elegant-billto-vertical dt,
+.documents-elegant-billto-vertical dd {
+  text-align: left !important;
+}
+
+/* =====================================================
+   PDF FAR-RIGHT PAGE POSITION
+   Leaves a printer-safe 5 mm outer margin and anchors both right-side
+   blocks to the same far-right page boundary.
+===================================================== */
+.documents-elegant-header,
+.documents-elegant-parties {
+  grid-template-columns: minmax(0, 1fr) 76mm !important;
+  column-gap: 6mm !important;
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+.documents-elegant-title,
+.documents-elegant-billto,
+.documents-elegant-billto-vertical {
+  grid-column: 2 !important;
+  width: 76mm !important;
+  max-width: 76mm !important;
+  margin-left: auto !important;
+  margin-right: -8mm !important;
+  justify-self: end !important;
+  align-self: start !important;
+  transform: none !important;
+}
+
+.documents-elegant-title h1,
+.documents-elegant-billto h3,
+.documents-elegant-billto-vertical h3,
+.documents-elegant-title dl,
+.documents-elegant-billto dl,
+.documents-elegant-billto-vertical dl {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  text-align: left !important;
+}
+
+.documents-elegant-title dl,
+.documents-elegant-billto dl,
+.documents-elegant-billto-vertical dl {
+  grid-template-columns: 27mm minmax(0, 1fr) !important;
+  column-gap: 3mm !important;
+}
+
+.documents-elegant-title dl {
+  grid-template-columns: var(--documents-pdf-meta-label-width, 27mm) minmax(0, 1fr) !important;
+  column-gap: var(--documents-pdf-meta-column-gap, 3mm) !important;
+  row-gap: var(--documents-pdf-meta-row-gap, 0.4mm) !important;
+}
+
+.documents-elegant-billto dl,
+.documents-elegant-billto-vertical dl {
+  grid-template-columns: var(--documents-pdf-customer-label-width, 22mm) minmax(0, 1fr) !important;
+  column-gap: var(--documents-pdf-customer-column-gap, 2mm) !important;
+  row-gap: var(--documents-pdf-customer-row-gap, 0.4mm) !important;
+}
+
+
+/* Billing address formatting for PDF/print: break address at commas and show a maximum of 3 lines. */
+.documents-billing-address {
+  display: block !important;
+  max-width: 55mm !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  line-height: 1.18 !important;
+  max-height: calc(1.18em * 3) !important;
+}
+
+.documents-billing-address br {
+  display: block !important;
+  content: "" !important;
+}
+/* Seven-column invoice item table with line discount support. */
+.documents-elegant-items th:nth-child(1),
+.documents-elegant-items td:nth-child(1) { width: 6%; text-align: center; }
+.documents-elegant-items th:nth-child(2),
+.documents-elegant-items td:nth-child(2) { width: 20%; text-align: left; }
+.documents-elegant-items th:nth-child(3),
+.documents-elegant-items td:nth-child(3) { width: 28%; text-align: left; }
+.documents-elegant-items th:nth-child(4),
+.documents-elegant-items td:nth-child(4) { width: 14%; text-align: right; }
+.documents-elegant-items th:nth-child(5),
+.documents-elegant-items td:nth-child(5) { width: 7%; text-align: right; }
+.documents-elegant-items th:nth-child(6),
+.documents-elegant-items td:nth-child(6) { width: 10%; text-align: right; }
+.documents-elegant-items th:nth-child(7),
+.documents-elegant-items td:nth-child(7) { width: 15%; text-align: right; }

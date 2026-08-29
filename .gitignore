@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+
+# Electron / build outputs
+dist/
+build/
+out/
+docs/
+release/
+.cache/
+.electron-cache/
+.electron-gyp/
+
+# Package manager cache
+.npm-cache/
+
+# Database files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE / editor files
+.vscode/
+.vs/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Backup files
+*.bak
+
+# Miscellaneous
+*.cache
+
+# Electron installers / packages
+*.exe
+*.msi
+*.dmg
+*.AppImage
+*.asar
+*.zip
