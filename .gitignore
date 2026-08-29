@@ -62,3 +62,11 @@ temp/
 *.AppImage
 *.asar
 *.zip
+
+# Application runtime/cache data
+.pos-preview-user-data/
+**/.pos-preview-user-data/
+
+# Python cache
+__pycache__/
+*.py[cod]
