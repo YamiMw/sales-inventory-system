@@ -1,3 +1,6 @@
+name: CI Tests
+on: [push, pull_request]
+
 jobs:
   verify:
     runs-on: windows-latest
@@ -16,8 +19,7 @@ jobs:
           echo "GYP_MSVS_VERSION=2022" >> $env:GITHUB_ENV
           echo "VCToolsVersion=14.36.32532" >> $env:GITHUB_ENV   # optional: pin if neede
 
-
       - name: Install dependencies
-  env:
-    npm_config_build_from_source: false
-  run: npm install
+        env:
+          npm_config_build_from_source: false
+        run: npm install
