@@ -1,16 +1,25 @@
-name: Test
-
-on:
-  push:
-  pull_request:
-
 jobs:
   verify:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - run: npm install --ignore-scripts
+          node-version: '24'                    # prefer Node 24
+
+      - name: Set MSVC / node-gyp env
+        shell: powershell
+        run: |
+          echo "npm_config_msvs_version=2022" >> $env:GITHUB_ENV
+          echo "GYP_MSVS_VERSION=2022" >> $env:GITHUB_ENV
+          echo "VCToolsVersion=14.36.32532" >> $env:GITHUB_ENV   # optional: pin if needed
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+        env:
+          npm_config_msvs_version: 2022
+          GYP_MSVS_VERSION: 2022
+
       - run: npm run verify
