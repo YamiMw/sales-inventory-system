@@ -116,8 +116,6 @@ exports.seed = async function(knex) {
       phone: '555-0123',
       address: '123 Main St',
       city: 'Springfield',
-      state: 'IL',
-      postal_code: '62701',
       created_by: adminId
     },
     {
@@ -127,8 +125,6 @@ exports.seed = async function(knex) {
       phone: '555-0456',
       address: '456 Business Ave',
       city: 'Chicago',
-      state: 'IL',
-      postal_code: '60601',
       customer_type: 'business',
       credit_limit: 5000.00,
       created_by: adminId

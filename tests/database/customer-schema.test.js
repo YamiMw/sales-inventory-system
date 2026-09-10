@@ -46,6 +46,7 @@ test('migration repairs a live-style customer table missing customer_type', asyn
     table.string('name', 200).notNullable();
     table.string('email', 200);
     table.string('phone', 50);
+    table.string('mobile', 50);
     table.text('address');
     table.string('city', 100);
     table.string('state', 100);
@@ -79,7 +80,8 @@ test('migration repairs a live-style customer table missing customer_type', asyn
     '009_integrity_foundation',
     '010_stock_transaction_reference',
     '011_invoice_manager_approval',
-    '012_quotation_manager_approval'
+    '012_quotation_manager_approval',
+    '013_remove_customer_contact_location_fields'
   ]);
 
   const verification = await verifyCustomerSchema(db);
@@ -91,6 +93,9 @@ test('migration repairs a live-style customer table missing customer_type', asyn
 
   const customer = await db('customers').where('customer_code', 'LEGACY-001').first();
   assert.equal(customer.customer_type, 'Individual');
+  for (const column of ['mobile', 'state', 'postal_code', 'country']) {
+    assert.equal(Object.hasOwn(customer, column), false);
+  }
 
   const secondRun = await runPendingMigrations(db);
   assert.deepEqual(secondRun, []);
@@ -140,7 +145,6 @@ test('customer create and update use the verified fresh-database schema', async 
     name: 'Fresh Database Customer',
     email: 'fresh@example.com',
     phone: '0999000111',
-    postalCode: '10001',
     customerType: 'Business',
     creditLimit: 2500,
     status: 'Active'
@@ -148,7 +152,9 @@ test('customer create and update use the verified fresh-database schema', async 
 
   let customer = await db('customers').where('id', created.id).first();
   assert.equal(customer.customer_type, 'Business');
-  assert.equal(customer.postal_code, '10001');
+  for (const column of ['mobile', 'state', 'postal_code', 'country']) {
+    assert.equal(Object.hasOwn(customer, column), false);
+  }
   assert.equal(Number(customer.credit_limit), 2500);
 
   const updated = await updateCustomerRecord(db, created.id, {

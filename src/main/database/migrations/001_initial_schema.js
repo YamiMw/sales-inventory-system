@@ -113,12 +113,8 @@ async function up(knex) {
     table.string('name', 200).notNullable();
     table.string('email', 200);
     table.string('phone', 50);
-    table.string('mobile', 50);
     table.text('address');
     table.string('city', 100);
-    table.string('state', 100);
-    table.string('postal_code', 20);
-    table.string('country', 100).defaultTo('USA');
     table.decimal('credit_limit', 10, 2).defaultTo(0);
     table.decimal('current_balance', 10, 2).defaultTo(0);
     table.string('customer_type', 20).defaultTo('individual');

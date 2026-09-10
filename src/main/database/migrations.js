@@ -15,6 +15,7 @@ const integrityFoundation = require('./migrations/009_integrity_foundation');
 const stockTransactionReference = require('./migrations/010_stock_transaction_reference');
 const invoiceManagerApproval = require('./migrations/011_invoice_manager_approval');
 const quotationManagerApproval = require('./migrations/012_quotation_manager_approval');
+const removeCustomerContactLocationFields = require('./migrations/013_remove_customer_contact_location_fields');
 
 const MIGRATIONS_TABLE = '_app_migrations';
 const migrations = Object.freeze([
@@ -29,7 +30,8 @@ const migrations = Object.freeze([
   integrityFoundation,
   stockTransactionReference,
   invoiceManagerApproval,
-  quotationManagerApproval
+  quotationManagerApproval,
+  removeCustomerContactLocationFields
 ]);
 
 async function ensureMigrationsTable(db) {

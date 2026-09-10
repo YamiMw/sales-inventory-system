@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../Downloads/aliko_complete_pos"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

@@ -20,10 +20,6 @@ function getCustomerType(customer, fallback) {
   );
 }
 
-function getPostalCode(customer, fallback) {
-  return firstDefined(customer.postalCode, customer.postal_code, fallback);
-}
-
 function getCreditLimit(customer, fallback) {
   return firstDefined(customer.creditLimit, customer.credit_limit, fallback);
 }
@@ -40,9 +36,6 @@ async function createCustomerRecord(db, customer) {
     phone: nullable(customer.phone),
     address: nullable(customer.address),
     city: nullable(customer.city),
-    state: nullable(customer.state),
-    postal_code: nullable(getPostalCode(customer)),
-    country: firstDefined(customer.country, 'USA'),
     customer_type: firstDefined(getCustomerType(customer), 'Individual'),
     credit_limit: firstDefined(getCreditLimit(customer), 0),
     status: firstDefined(customer.status, 'Active'),
@@ -67,9 +60,6 @@ async function updateCustomerRecord(db, id, customer) {
       phone: nullable(firstDefined(customer.phone, existing.phone)),
       address: nullable(firstDefined(customer.address, existing.address)),
       city: nullable(firstDefined(customer.city, existing.city)),
-      state: nullable(firstDefined(customer.state, existing.state)),
-      postal_code: nullable(getPostalCode(customer, existing.postal_code)),
-      country: firstDefined(customer.country, existing.country, 'USA'),
       customer_type: firstDefined(
         getCustomerType(customer),
         existing.customer_type,
