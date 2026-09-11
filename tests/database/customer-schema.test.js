@@ -62,10 +62,16 @@ test('migration repairs a live-style customer table missing customer_type', asyn
     customer_code: 'LEGACY-001',
     name: 'Legacy Customer'
   });
+  await db.schema.createTable('customer_references', (table) => {
+    table.increments('id').primary();
+    table.integer('customer_id').notNullable().references('id').inTable('customers');
+  });
+  await db('customer_references').insert({ customer_id: 1 });
   await db.schema.createTable('sales', (table) => {
     table.increments('id').primary();
     table.string('invoice_number', 50).notNullable().unique();
   });
+  await db.raw('PRAGMA foreign_keys = ON');
 
   const applied = await runPendingMigrations(db);
   assert.deepEqual(applied, [
@@ -93,6 +99,11 @@ test('migration repairs a live-style customer table missing customer_type', asyn
 
   const customer = await db('customers').where('customer_code', 'LEGACY-001').first();
   assert.equal(customer.customer_type, 'Individual');
+  assert.equal(
+    await db('customer_references').where({ customer_id: customer.id }).count('* as count').first()
+      .then((row) => Number(row.count)),
+    1
+  );
   for (const column of ['mobile', 'state', 'postal_code', 'country']) {
     assert.equal(Object.hasOwn(customer, column), false);
   }

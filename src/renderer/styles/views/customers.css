@@ -5620,9 +5620,9 @@ textarea.customer-form-control {
   font-size: 12px !important;
 }
 
-/* Give the Customer contact column more room. */
+/* Separate customer email and address columns. */
 #customers-view.view.active .customer-main-table {
-  min-width: 1040px !important;
+  min-width: 1180px !important;
 }
 
 #customers-view.view.active .customer-main-table th:nth-child(1),
@@ -5632,47 +5632,45 @@ textarea.customer-form-control {
 
 #customers-view.view.active .customer-main-table th:nth-child(2),
 #customers-view.view.active .customer-main-table td:nth-child(2) {
-  width: 20% !important;
+  width: 18% !important;
 }
 
 #customers-view.view.active .customer-main-table th:nth-child(3),
 #customers-view.view.active .customer-main-table td:nth-child(3) {
-  width: 38% !important;
+  width: 23% !important;
 }
 
 #customers-view.view.active .customer-main-table th:nth-child(4),
 #customers-view.view.active .customer-main-table td:nth-child(4) {
-  width: 15% !important;
+  width: 25% !important;
 }
 
 #customers-view.view.active .customer-main-table th:nth-child(5),
 #customers-view.view.active .customer-main-table td:nth-child(5) {
-  width: 11% !important;
+  width: 12% !important;
 }
 
 #customers-view.view.active .customer-main-table th:nth-child(6),
 #customers-view.view.active .customer-main-table td:nth-child(6) {
-  width: 9% !important;
+  width: 8% !important;
 }
 
-#customers-view.view.active .contact-inline-cell {
-  display: flex !important;
-  gap: 14px !important;
-  width: 100% !important;
-  max-width: 100% !important;
+#customers-view.view.active .customer-main-table th:nth-child(7),
+#customers-view.view.active .customer-main-table td:nth-child(7) {
+  width: 7% !important;
 }
 
-#customers-view.view.active .contact-inline-cell .contact-row {
+#customers-view.view.active .customer-email-cell,
+#customers-view.view.active .customer-address-cell {
   min-width: 0 !important;
-  max-width: none !important;
+  overflow: hidden !important;
 }
 
-#customers-view.view.active .contact-inline-cell .contact-row.email {
-  flex: 1 1 58% !important;
-}
-
-#customers-view.view.active .contact-inline-cell .contact-row.phone {
-  flex: 1 1 42% !important;
+#customers-view.view.active .customer-email-cell span,
+#customers-view.view.active .customer-address-cell span {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
 }
 
 /* Profile-style centered Add Customer dialogs. */

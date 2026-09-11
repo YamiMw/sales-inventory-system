@@ -133,9 +133,10 @@ class CustomersView {
     row.querySelector('[data-customer-id]').textContent = id;
     row.querySelector('[data-customer-name]').textContent = cust.name || 'Unknown';
 
-    const emailRow = row.querySelector('[data-contact-email-row]');
-    const phoneRow = row.querySelector('[data-contact-phone-row]');
-    const mutedContact = row.querySelector('[data-contact-empty]');
+    const emailRow = row.querySelector('[data-customer-email-row]');
+    const addressRow = row.querySelector('[data-customer-address-row]');
+    const mutedEmail = row.querySelector('[data-customer-email-empty]');
+    const mutedAddress = row.querySelector('[data-customer-address-empty]');
 
     if (cust.email) {
       emailRow.hidden = false;
@@ -145,15 +146,16 @@ class CustomersView {
       emailRow.hidden = true;
     }
 
-    if (cust.phone) {
-      phoneRow.hidden = false;
-      row.querySelector('[data-customer-phone]').textContent = cust.phone;
-      phoneRow.title = cust.phone;
+    if (cust.address) {
+      addressRow.hidden = false;
+      row.querySelector('[data-customer-address]').textContent = cust.address;
+      addressRow.title = cust.address;
     } else {
-      phoneRow.hidden = true;
+      addressRow.hidden = true;
     }
 
-    if (mutedContact) mutedContact.hidden = Boolean(cust.email || cust.phone);
+    if (mutedEmail) mutedEmail.hidden = Boolean(cust.email);
+    if (mutedAddress) mutedAddress.hidden = Boolean(cust.address);
 
     const balanceElement = row.querySelector('[data-customer-balance]');
     balanceElement.textContent = this.formatCurrency(cust.balance || 0);

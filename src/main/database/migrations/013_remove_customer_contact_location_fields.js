@@ -17,9 +17,13 @@ async function up(db) {
   }
 
   if (columnsToRemove.length > 0) {
-    await db.schema.alterTable('customers', (table) => {
-      columnsToRemove.forEach((column) => table.dropColumn(column));
-    });
+    // Knex implements dropColumn by rebuilding the table on SQLite. That includes
+    // dropping the original customers table, which fails when sales, quotations,
+    // or invoices reference it and foreign keys are enabled. SQLite supports a
+    // native DROP COLUMN, so use it to keep the referenced table in place.
+    for (const column of columnsToRemove) {
+      await db.raw(`ALTER TABLE "customers" DROP COLUMN "${column}"`);
+    }
   }
 }
 

@@ -2108,7 +2108,8 @@
                 <tr>
                   <th>ID</th>
                   <th>Customer Name</th>
-                  <th>Contact Information</th>
+                  <th>Email</th>
+                  <th>Address</th>
                   <th>
                     <span title="Account balance is the unpaid amount the customer still owes. It is used with the credit limit to show available credit.">Account Balance</span>
                   </th>
@@ -2146,17 +2147,18 @@
               </div>
             </td>
             <td>
-              <div class="contact-info-cell contact-inline-cell">
-                <div class="contact-row email" data-contact-email-row title="">
-                  <img src="assets/images/icons/custom/mail_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
-                  <span data-customer-email></span>
-                </div>
-                <div class="contact-row phone" data-contact-phone-row title="">
-                  <img src="assets/images/icons/custom/phone_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
-                  <span data-customer-phone></span>
-                </div>
-                <span class="customer-muted" data-contact-empty>No contact details</span>
+              <div class="contact-row email customer-email-cell" data-customer-email-row title="">
+                <img src="assets/images/icons/custom/mail_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                <span data-customer-email></span>
               </div>
+              <span class="customer-muted" data-customer-email-empty>No email address</span>
+            </td>
+            <td>
+              <div class="contact-row address customer-address-cell" data-customer-address-row title="">
+                <img src="assets/images/icons/custom/map_pin_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                <span data-customer-address></span>
+              </div>
+              <span class="customer-muted" data-customer-address-empty>No address</span>
             </td>
             <td>
               <div class="balance-display">
@@ -2195,7 +2197,7 @@
 
         <template id="customer-empty-row-template">
           <tr class="customer-empty-row">
-            <td colspan="6">
+            <td colspan="7">
               <div class="customer-empty-state">
                 <span class="customer-empty-icon">
                   <img src="assets/images/icons/custom/customers_icon.svg" alt="" class="app-icon" aria-hidden="true">
