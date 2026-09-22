@@ -256,6 +256,7 @@
     const phone = modal.querySelector('#pos-new-customer-phone')?.value.trim();
     const email = modal.querySelector('#pos-new-customer-email')?.value.trim();
     const address = modal.querySelector('#pos-new-customer-address')?.value.trim();
+    const city = modal.querySelector('#pos-new-customer-city')?.value.trim();
     const type = modal.querySelector('#pos-new-customer-type')?.value
       || modal.querySelector('[data-pos-customer-type].active')?.dataset.posCustomerType
       || 'Individual';
@@ -273,6 +274,7 @@
       phone: phone || null,
       email: email || null,
       address: address || null,
+      city: city || null,
       type,
       creditLimit,
       status

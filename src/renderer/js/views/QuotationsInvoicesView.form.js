@@ -127,6 +127,7 @@
     const phone = modal.querySelector('#document-new-customer-phone')?.value.trim();
     const email = modal.querySelector('#document-new-customer-email')?.value.trim();
     const address = modal.querySelector('#document-new-customer-address')?.value.trim();
+    const city = modal.querySelector('#document-new-customer-city')?.value.trim();
     const customerType = modal.querySelector('[data-document-customer-type].active')?.dataset.documentCustomerType || 'Individual';
 
     if (!name) {
@@ -145,6 +146,7 @@
       phone: phone || null,
       email: email || null,
       address: address || null,
+      city: city || null,
       customerType,
       type: customerType,
       creditLimit: 0,

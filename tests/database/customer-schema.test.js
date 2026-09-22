@@ -91,6 +91,7 @@ test('migration repairs a live-style customer table missing customer_type', asyn
   ]);
 
   const verification = await verifyCustomerSchema(db);
+  assert.ok(verification.columns.includes('created_by'));
   assert.deepEqual(verification.missingColumns, []);
   assert.deepEqual(
     CUSTOMER_ENTITY_COLUMNS.filter((column) => !verification.columns.includes(column)),
@@ -158,11 +159,13 @@ test('customer create and update use the verified fresh-database schema', async 
     phone: '0999000111',
     customerType: 'Business',
     creditLimit: 2500,
-    status: 'Active'
+    status: 'Active',
+    userId: 7
   });
 
   let customer = await db('customers').where('id', created.id).first();
   assert.equal(customer.customer_type, 'Business');
+  assert.equal(Number(customer.created_by), 7);
   for (const column of ['mobile', 'state', 'postal_code', 'country']) {
     assert.equal(Object.hasOwn(customer, column), false);
   }

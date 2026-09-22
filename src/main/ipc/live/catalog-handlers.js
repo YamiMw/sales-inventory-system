@@ -522,12 +522,16 @@ function registerCatalogHandlers(context) {
   secureIpc.handle('create-customer', async (event, customer) => {
     try {
       const db = getDatabase();
+      const actorUserId = event?.auth?.userId ?? customer?.userId ?? null;
 
-      const { id, customerCode } = await createCustomerRecord(db, customer);
+      const { id, customerCode } = await createCustomerRecord(db, {
+        ...customer,
+        userId: actorUserId
+      });
       
-      logger.info(`Customer created: ${customer.name} (${customerCode})`);
+      logger.info(`Customer created: ${customer.name} (${customerCode}) by user ${actorUserId ?? 'system'}`);
       
-      return { success: true, data: { id, customer_code: customerCode, ...customer } };
+      return { success: true, data: { id, customer_code: customerCode, ...customer, created_by: actorUserId } };
     } catch (error) {
       logger.error('Create customer error:', error.message);
       return { success: false, error: error.message };

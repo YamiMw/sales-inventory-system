@@ -53,6 +53,7 @@ class CustomersView {
       email: customer.email || '',
       phone: customer.phone || '',
       address: customer.address || '',
+      city: customer.city || '',
       balance: parseFloat(customer.current_balance || customer.balance || 0),
       type: this.normalizeCustomerType(customer.customer_type || customer.type),
       status: this.normalizeCustomerStatus(customer.status),
@@ -134,8 +135,10 @@ class CustomersView {
     row.querySelector('[data-customer-name]').textContent = cust.name || 'Unknown';
 
     const emailRow = row.querySelector('[data-customer-email-row]');
+    const phoneRow = row.querySelector('[data-customer-phone-row]');
     const addressRow = row.querySelector('[data-customer-address-row]');
     const mutedEmail = row.querySelector('[data-customer-email-empty]');
+    const mutedPhone = row.querySelector('[data-customer-phone-empty]');
     const mutedAddress = row.querySelector('[data-customer-address-empty]');
 
     if (cust.email) {
@@ -144,6 +147,14 @@ class CustomersView {
       emailRow.title = cust.email;
     } else {
       emailRow.hidden = true;
+    }
+
+    if (cust.phone) {
+      phoneRow.hidden = false;
+      row.querySelector('[data-customer-phone]').textContent = cust.phone;
+      phoneRow.title = cust.phone;
+    } else {
+      phoneRow.hidden = true;
     }
 
     if (cust.address) {
@@ -155,6 +166,7 @@ class CustomersView {
     }
 
     if (mutedEmail) mutedEmail.hidden = Boolean(cust.email);
+    if (mutedPhone) mutedPhone.hidden = Boolean(cust.phone);
     if (mutedAddress) mutedAddress.hidden = Boolean(cust.address);
 
     const balanceElement = row.querySelector('[data-customer-balance]');
@@ -352,6 +364,7 @@ class CustomersView {
     document.getElementById('customer-email').value = cust.email || '';
     document.getElementById('customer-phone').value = cust.phone || '';
     document.getElementById('customer-address').value = cust.address || '';
+    document.getElementById('customer-city').value = cust.city || '';
     document.getElementById('customer-type').value = this.normalizeCustomerType(cust.type);
     document.getElementById('customer-credit-limit').value = cust.creditLimit || 0;
     document.getElementById('customer-status').value = this.normalizeCustomerStatus(cust.status);
@@ -366,6 +379,7 @@ class CustomersView {
     document.getElementById('customer-email').value = '';
     document.getElementById('customer-phone').value = '';
     document.getElementById('customer-address').value = '';
+    document.getElementById('customer-city').value = '';
     document.getElementById('customer-type').value = 'Individual';
     document.getElementById('customer-credit-limit').value = '0';
     document.getElementById('customer-status').value = 'Active';
@@ -380,6 +394,7 @@ class CustomersView {
       email: document.getElementById('customer-email').value.trim(),
       phone: document.getElementById('customer-phone').value.trim(),
       address: document.getElementById('customer-address').value.trim(),
+      city: document.getElementById('customer-city').value.trim(),
       type: this.normalizeCustomerType(document.getElementById('customer-type').value),
       creditLimit: parseFloat(document.getElementById('customer-credit-limit').value) || 0,
       status: this.normalizeCustomerStatus(document.getElementById('customer-status').value)
@@ -476,6 +491,7 @@ class CustomersView {
       ...customer,
       customerType: customer.type,
       creditLimit: customer.creditLimit,
+      city: customer.city || '',
       status: this.normalizeCustomerStatus(customer.status)
     };
   }

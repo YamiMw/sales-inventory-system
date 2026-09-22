@@ -15,6 +15,7 @@ const CUSTOMER_ENTITY_COLUMNS = Object.freeze([
   'current_balance',
   'customer_type',
   'status',
+  'created_by',
   'created_at',
   'updated_at'
 ]);

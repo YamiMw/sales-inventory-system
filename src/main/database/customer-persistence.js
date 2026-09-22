@@ -39,6 +39,7 @@ async function createCustomerRecord(db, customer) {
     customer_type: firstDefined(getCustomerType(customer), 'Individual'),
     credit_limit: firstDefined(getCreditLimit(customer), 0),
     status: firstDefined(customer.status, 'Active'),
+    created_by: firstDefined(customer.userId, customer.created_by, null),
     created_at: db.fn.now(),
     updated_at: db.fn.now()
   });

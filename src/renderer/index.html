@@ -2036,8 +2036,12 @@
 
         <div class="customer-top-actions">
           <button type="button" id="import-customers-top-btn" class="customer-import-btn">
-            <img src="assets/images/icons/custom/upload_icon.svg" alt="" class="custom-ui-icon customer-action-icon customer-import-icon" aria-hidden="true">
+            <img src="assets/images/icons/custom/download_icon.svg" alt="" class="custom-ui-icon customer-action-icon customer-import-icon" aria-hidden="true">
             <span>Import</span>
+          </button>
+          <button type="button" id="export-customers-csv" class="customer-export-btn">
+            <img src="assets/images/icons/custom/upload_icon.svg" alt="" class="custom-ui-icon customer-action-icon customer-export-icon" aria-hidden="true">
+            <span>Export</span>
           </button>
           <button type="button" id="add-customer-top-btn" class="customer-add-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -2109,6 +2113,7 @@
                   <th>ID</th>
                   <th>Customer Name</th>
                   <th>Email</th>
+                  <th>Phone</th>
                   <th>Address</th>
                   <th>
                     <span title="Account balance is the unpaid amount the customer still owes. It is used with the credit limit to show available credit.">Account Balance</span>
@@ -2125,10 +2130,6 @@
           <div class="table-footer">
             <div class="bulk-actions">
               <span id="customers-showing">Showing 0 of 0 customers</span>
-              <button type="button" id="export-customers-csv" class="btn-sm">
-                <img src="assets/images/icons/custom/download_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
-                <span>Export CSV</span>
-              </button>
             </div>
             <div class="pagination" id="customers-pagination"></div>
           </div>
@@ -2152,6 +2153,13 @@
                 <span data-customer-email></span>
               </div>
               <span class="customer-muted" data-customer-email-empty>No email address</span>
+            </td>
+            <td>
+              <div class="contact-row phone customer-phone-cell" data-customer-phone-row title="">
+                <img src="assets/images/icons/custom/phone_icon.svg" alt="" class="custom-ui-icon inline-icon-img" aria-hidden="true">
+                <span data-customer-phone></span>
+              </div>
+              <span class="customer-muted" data-customer-phone-empty>No phone number</span>
             </td>
             <td>
               <div class="contact-row address customer-address-cell" data-customer-address-row title="">
@@ -2197,7 +2205,7 @@
 
         <template id="customer-empty-row-template">
           <tr class="customer-empty-row">
-            <td colspan="7">
+            <td colspan="8">
               <div class="customer-empty-state">
                 <span class="customer-empty-icon">
                   <img src="assets/images/icons/custom/customers_icon.svg" alt="" class="app-icon" aria-hidden="true">
@@ -2375,7 +2383,7 @@
         <div class="modal customer-form-modal">
           <div class="modal-header">
             <h2 id="customer-form-title">Add Customer</h2>
-            <button type="button" class="modal-close" data-customer-modal-close aria-label="Close customer form">âœ•</button>
+            <button type="button" class="modal-close" data-customer-modal-close aria-label="Close customer form"></button>
           </div>
           <div class="modal-body">
             <input type="hidden" id="customer-edit-id">
@@ -2385,21 +2393,25 @@
             </div>
             <div class="customer-form-row">
               <div class="form-group">
-                <label for="customer-email">Email</label>
-                <input type="email" id="customer-email" class="customer-form-control" placeholder="Email address">
+                <label for="customer-email">Email <span class="required-mark">*</span></label>
+                <input type="email" id="customer-email" class="customer-form-control" placeholder="Email address" required>
               </div>
               <div class="form-group">
-                <label for="customer-phone">Phone</label>
-                <input type="text" id="customer-phone" class="customer-form-control" placeholder="Phone number">
+                <label for="customer-phone">Phone <span class="required-mark">*</span></label>
+                <input type="text" id="customer-phone" class="customer-form-control" placeholder="Phone number" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="customer-address">Address</label>
-              <textarea id="customer-address" class="customer-form-control" rows="2" placeholder="Street address"></textarea>
+              <label for="customer-address">Address <span class="required-mark">*</span></label>
+              <textarea id="customer-address" class="customer-form-control" rows="2" placeholder="Street address" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="customer-city">City <span class="required-mark">*</span></label>
+              <input type="text" id="customer-city" class="customer-form-control" placeholder="City" required>
             </div>
             <div class="customer-form-row">
               <div class="form-group">
-                <label for="customer-type">Type</label>
+                <label for="customer-type">Type <span class="required-mark">*</span></label>
                 <select id="customer-type" class="customer-form-control">
                   <option value="Individual">Individual</option>
                   <option value="Corporate">Corporate</option>
@@ -2411,7 +2423,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="customer-status">Status</label>
+              <label for="customer-status">Status <span class="required-mark">*</span></label>
               <select id="customer-status" class="customer-form-control">
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
@@ -3270,7 +3282,7 @@
             <div>
               <h2 id="pos-customer-modal-title">Add Customer</h2>
             </div>
-            <button type="button" class="modal-close" data-pos-customer-close aria-label="Close customer form">x</button>
+            <button type="button" class="modal-close" data-pos-customer-close aria-label="Close customer form"></button>
           </div>
           <form id="pos-customer-form" class="pos-customer-form">
             <div class="modal-body">
@@ -3280,19 +3292,23 @@
                   <input type="text" id="pos-new-customer-name" required placeholder="Full name or company name">
                 </div>
                 <div class="form-group pos-customer-field">
-                  <label for="pos-new-customer-email">Email</label>
-                  <input type="email" id="pos-new-customer-email" placeholder="Email address">
+                  <label for="pos-new-customer-email">Email <span class="required-mark">*</span></label>
+                  <input type="email" id="pos-new-customer-email" placeholder="Email address" required>
                 </div>
                 <div class="form-group pos-customer-field">
-                  <label for="pos-new-customer-phone">Phone</label>
-                  <input type="tel" id="pos-new-customer-phone" placeholder="Phone number">
+                  <label for="pos-new-customer-phone">Phone <span class="required-mark">*</span></label>
+                  <input type="tel" id="pos-new-customer-phone" placeholder="Phone number" required>
                 </div>
                 <div class="form-group pos-customer-field full">
-                  <label for="pos-new-customer-address">Address</label>
-                  <textarea id="pos-new-customer-address" rows="3" placeholder="Street address"></textarea>
+                  <label for="pos-new-customer-address">Address <span class="required-mark">*</span></label>
+                  <textarea id="pos-new-customer-address" rows="3" placeholder="Street address" required></textarea>
+                </div>
+                <div class="form-group pos-customer-field full">
+                  <label for="pos-new-customer-city">City <span class="required-mark">*</span></label>
+                  <input type="text" id="pos-new-customer-city" placeholder="City" required>
                 </div>
                 <div class="form-group pos-customer-field">
-                  <label for="pos-new-customer-type">Type</label>
+                  <label for="pos-new-customer-type">Type <span class="required-mark">*</span></label>
                   <select id="pos-new-customer-type">
                     <option value="Individual">Individual</option>
                     <option value="Corporate">Corporate</option>
@@ -3303,7 +3319,7 @@
                   <input type="number" id="pos-new-customer-credit-limit" min="0" step="0.01" value="0">
                 </div>
                 <div class="form-group pos-customer-field full">
-                  <label for="pos-new-customer-status">Status</label>
+                  <label for="pos-new-customer-status">Status <span class="required-mark">*</span></label>
                   <select id="pos-new-customer-status">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -3368,12 +3384,20 @@
                   <input type="tel" id="document-new-customer-phone" placeholder="e.g. 555-0123">
                 </div>
                 <div class="form-group pos-customer-field full">
+                  <label for="document-new-customer-phone-variable">Phone Variable</label>
+                  <input type="text" id="document-new-customer-phone-variable" placeholder="Phone variable">
+                </div>
+                <div class="form-group pos-customer-field full">
                   <label for="document-new-customer-email">Email Address</label>
                   <input type="email" id="document-new-customer-email" placeholder="e.g. name@email.com">
                 </div>
                 <div class="form-group pos-customer-field full">
                   <label for="document-new-customer-address">Billing Address</label>
                   <textarea id="document-new-customer-address" rows="3" placeholder="Billing address"></textarea>
+                </div>
+                <div class="form-group pos-customer-field full">
+                  <label for="document-new-customer-city">City</label>
+                  <input type="text" id="document-new-customer-city" placeholder="City">
                 </div>
               </div>
             </div>
