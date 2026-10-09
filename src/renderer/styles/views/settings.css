@@ -238,9 +238,7 @@ body.settings-mode .main-content {
 }
 
 .company-profile-grid {
-  display: grid;
-  grid-template-columns: minmax(220px, 31%) minmax(0, 1fr);
-  gap: 36px;
+  display: block;
 }
 
 .business-logo-field {

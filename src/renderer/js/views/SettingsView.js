@@ -217,19 +217,6 @@ class SettingsView {
           ${this.cardHeaderMarkup('building-2', 'blue', 'Company Information')}
           <div class="settings-card-body">
             <div class="company-profile-grid">
-              <div class="business-logo-field">
-                <label class="settings-eyebrow">Business Logo</label>
-                <button type="button" class="logo-upload-area" id="logo-upload" aria-label="Upload business logo">
-                  <img id="company-logo-preview" alt="Business logo preview">
-                  <span class="logo-upload-placeholder">
-                    <img src="assets/images/icons/custom/camera_icon.svg" alt="" class="custom-ui-icon" aria-hidden="true"><strong>Click to upload</strong>
-                  </span>
-                  <span class="logo-upload-overlay"><img src="assets/images/icons/custom/upload_icon.svg" alt="" class="custom-ui-icon" aria-hidden="true"></span>
-                </button>
-                <input type="file" id="company-logo-input" accept="image/png,image/jpeg,image/webp" hidden>
-                <p class="field-help centered">PNG, JPG or WebP up to 2MB. Recommended 512 x 512px.</p>
-              </div>
-
               <div class="company-main-fields">
                 ${this.inputMarkup('company-name', 'Company Name <span class="required-mark">*</span>', 'text', true)}
                 ${this.textareaMarkup('company-description', 'Business Description / Stockists In')}
@@ -750,7 +737,6 @@ class SettingsView {
       if (element) element.checked = this.toBoolean(checked);
     });
 
-    this.updateLogoPreview(settings.company_logo);
     const lastBackup = document.getElementById('last-backup-info');
     if (lastBackup) lastBackup.textContent = settings.last_backup || 'Never';
     const lastBackupPath = document.getElementById('last-backup-path');
@@ -943,7 +929,6 @@ class SettingsView {
 
       if (event.target.closest('#save-settings-btn, [data-settings-save]')) this.saveSettings();
       if (event.target.closest('[data-settings-discard]')) this.discardChanges();
-      if (event.target.closest('#logo-upload')) document.getElementById('company-logo-input')?.click();
       if (event.target.closest('#scan-printers-btn')) this.scanPrinters();
       if (event.target.closest('#test-print-btn')) this.testPrint('receipt');
       if (event.target.closest('#test-label-print-btn')) this.testPrint('label');
@@ -955,7 +940,6 @@ class SettingsView {
     });
 
     root.addEventListener('change', event => {
-      if (event.target.id === 'company-logo-input') this.handleLogoUpload(event.target.files?.[0]);
       if (['alerts-enabled', 'backup-enabled'].includes(event.target.id)) this.updateDependentFields();
       if (event.target.id === 'alerts-threshold') this.renderLowStock();
     });
@@ -979,41 +963,6 @@ class SettingsView {
       backup_enabled: backupEnabled,
       backup_next_run: backupEnabled ? this.settings.backup_next_run : ''
     });
-  }
-
-  handleLogoUpload(file) {
-    if (!file) return;
-    if (!file.type.startsWith('image/')) {
-      this.showNotification('Please select an image file', 'error');
-      return;
-    }
-    if (file.size > 2 * 1024 * 1024) {
-      this.showNotification('Logo must be smaller than 2MB', 'error');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.settings.company_logo = reader.result;
-      this.updateLogoPreview(reader.result);
-    };
-    reader.readAsDataURL(file);
-  }
-
-  updateLogoPreview(source) {
-    const preview = document.getElementById('company-logo-preview');
-    const upload = document.getElementById('logo-upload');
-    if (!preview || !upload) return;
-
-    if (source) {
-      preview.src = source;
-      preview.hidden = false;
-      upload.classList.add('has-logo');
-    } else {
-      preview.removeAttribute('src');
-      preview.hidden = true;
-      upload.classList.remove('has-logo');
-    }
   }
 
   renderLowStock() {
